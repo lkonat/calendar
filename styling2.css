@@ -1,0 +1,632 @@
+body{
+
+}
+table{
+
+}
+
+  .main{
+    width: 1000px;
+    height: auto;
+
+    margin: 0 auto;
+    position: relative;
+
+  }
+  .calendar {
+
+    width: 1000px;
+    height: auto;
+
+  }
+  .calendarBody{
+    width: 170px;
+    height: 230px;
+    margin-left: 10px;
+    float: left;
+  }
+  .years{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    cursor: pointer;
+
+  }
+  .box{
+   text-align: center;
+  }
+  .boxSunday{
+
+    color:blue;
+  }
+
+  .monthDisplay{
+    color: blue;
+  }
+  #sunday{
+    color: red;
+  }
+  .menus{
+    width: 1000px;;
+    height: 50px;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+
+  }
+  .menus li {
+    float: right;
+    list-style: none;
+    display: inline;
+    margin-left:  10px;
+    width: 100px;
+    cursor: pointer;
+    padding: 10px;
+  }
+  .menus a {
+    text-decoration: none;
+    font-size: 23px;
+  }
+  .oneMonth{
+    clear: both;
+    width: 0px;
+    height:0px;
+    text-align: center;
+    display: none;
+    overflow: hidden;
+
+  }
+  .months{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid darkgrey;
+    cursor: pointer;
+    text-align: right;
+    vertical-align: 0px;
+
+  }
+  .box1{
+    border: 1px solid darkgrey;
+  }
+  .box1Sunday{
+    border: 1px solid darkgrey;
+    color: blue;
+  }
+
+  .months:hover{
+    background-color: lightblue;
+  }
+  .aCalendarBody{
+    width: 1000px;
+    height: auto;
+    margin:0 auto;
+
+
+
+  }
+  .tableMonth{
+      border-collapse: collapse;
+      width: 1000px;
+      table-layout: fixed;
+      transition: .5s;
+  }
+  .previous{
+    float: left;
+
+  }
+  .previous button{
+      cursor: pointer;
+  }
+  .next{
+    float: right;
+
+  }
+  .next button{
+      cursor: pointer;
+  }
+  #titleMonth{
+    letter-spacing: .3em;
+    font-weight: bold;
+    color: white;
+
+  }
+  .row0 td{
+    background-color:turquoise;
+    border: none;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .events{
+
+    border: 1px solid blue;
+
+    background-color: lightblue;
+    overflow: scroll;
+    width: inherit;;
+
+  }
+  .aDay{
+    width: 1000px;
+    height: auto;
+    overflow-x: hidden;
+    transition: height 3s ease;
+      display: none;
+
+  }
+  .daySchedule{
+    width: inherit;
+    height: auto;
+
+
+  }
+  .dayTimes{
+    width: inherit;
+    height: 400px;
+    overflow:scroll;
+
+  }
+  .acell{
+    width: 900px;
+    height: 100px;
+    border: 1px solid black;
+  }
+  .firstCell{
+    width: 1000px;
+    height: 45px;
+
+
+  }
+  .firstTd{
+    vertical-align:0px;
+  }
+  .insideCell{
+    width: inherit;
+    height: 30px;
+    border-bottom: 1px solid lightblue;
+    cursor: pointer;
+    position: relative;
+  }
+  .insideCell:hover{
+    background-color: lightblue;
+  }
+  .eventMakingPanel{
+    position: absolute;
+    top:50px;
+    left:100px;
+    width: 300px;
+    height: 300px;
+    background-color: silver;
+    box-shadow: 10px 10px 5px #888888;
+    color: black;
+    z-index: 11;
+
+    display: none;
+  }
+  .eventMakingPanel .firstDiv{
+    height: inherit;
+    background-color: inherit;
+    z-index: 3;
+
+  }
+  .arrow{
+    width: 50px;
+    height: 50px;
+    background-color: inherit;;
+    position: absolute;
+    top: 100px;
+    left: -10px;
+    transform: rotate(45deg);
+
+    z-index: -1;
+  }
+  #buttonDelete{
+
+    position: absolute;
+    top: 270px;
+    left: 100px;
+  }
+  #buttonEdite{
+
+    position: absolute;
+    top: 270px;
+    left: 170px;
+  }
+  #buttonCreate{
+
+    position: absolute;
+    top: 270px;
+    left: 245px;
+  }
+  .deleteEMP{
+    position: absolute;
+    top: 0px;
+    left: 280px;
+    color: red;
+    cursor: pointer;
+  }
+  #eventDate{
+    width: inherit;
+    height: auto;
+  }
+  .timeInputs{
+
+    height: auto;
+    display: none;
+  }
+  .hourInputs{
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    margin-top:10px;
+    color: darkgrey;
+    position: relative;
+    float: left;
+  }
+  .minuteInputs{
+    width: auto;
+    height: auto;
+    margin-left: 10px;
+    margin-top:10px;
+    color: darkgrey;
+
+    position: relative;
+    float: left;
+  }
+  .eventDivs{
+    width: 98%;
+    height: 20px;
+    border: 1px solid yellow;
+    background-color: orange;
+    border-radius: 30px;
+    margin-top: 1px;
+    color: black;
+    overflow: hidden;
+    text-align: center;
+  }
+  .daysEventDivs{
+    width: 100px;
+    height: 20px;
+    border-bottom: 5px solid red;
+    border-top: 1px dashed black;
+    background-color: lavender;
+    color: black;
+    overflow: hidden;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+  }
+  .daysEventDivs:hover{
+    width: auto;
+    background-color: grey;
+
+
+  }
+  #time1{
+    width: 100px;
+    cursor: pointer;
+  }
+  #time2{
+    width: 100px;
+    cursor: pointer;
+  }
+  .hourInputs:hover #time1DropDown{
+    height: 100px;
+
+  }
+  .minuteInputs:hover #time2DropDown{
+    height: 100px;
+
+  }
+  #time1DropDown{
+    width: 105px;
+    height: 0px;
+    background-color: grey;
+    position: absolute;
+    top: 20px;
+    left: 38px;
+    overflow: scroll;
+    text-align: center;
+    transition: .5s ease;
+  }
+  #time2DropDown{
+    width: 105px;
+    height: 0px;
+    background-color: grey;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    overflow: scroll;
+    text-align: center;
+    transition: .5s ease;
+  }
+  .dropDownsElt{
+    width: inherit;
+    height: auto;
+
+
+  }
+  .dropDownsElt:hover{
+    background-color: white;
+    color: black;
+
+  }
+
+  .allDayDivs{
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    top: 0px;
+    left:0px;
+    border: 1px solid pink;
+    border-radius: 30px;
+    background-color: yellow;
+    color: black;
+    overflow: hidden;
+    text-align: center;
+  }
+  .allDayDivs:hover{
+    width: auto;
+    border-radius: 0px;
+    z-index: 3;
+  }
+  .aDayNavigation{
+    font-size: 3em;
+    cursor: pointer;
+    border: none;
+  }
+  .aDayNavigation:hover{
+    background-color: inherit;
+    color: white;
+  }
+  #dayTitles{
+    width:100%;
+    background-image: url("b4.png");
+    background-size: cover;;
+    color: white;
+
+  }
+  #smallInfoScreen{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: auto;
+    height: auto;
+    text-align: center;
+    color: black;
+    display: none;
+    z-index: 2;
+  }
+
+  #sContent{
+    width: inherit;
+    height: auto;
+    background-image: url("sp.png");
+    background-size: cover;
+    padding-left:  50px;
+    padding-right:  50px;
+    padding-top: 45px;
+    padding-bottom:20px;
+  }
+  #monthEventsInfoScreen{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 150px;
+    height: auto;
+    text-align: center;
+    color: black;
+    display: none;
+    z-index: 1;
+
+
+  }
+  #monthEventsInfoScreen  div{
+    cursor: pointer;
+    background-color: orange;
+    border-radius: 30px;
+    width: 98%;
+    height: 20px;
+    border: 1px solid yellow;
+    overflow: hidden;
+    margin-top: 3px;
+    box-shadow: 10px 10px 5px #888888;
+
+  }
+  #monthEventsInfoScreen  div:hover{
+    background-color: white;
+    height: auto;
+  }
+  .eventDivsExtra{
+    width: 98%;
+    height: 10px;
+    color: blue;
+    text-align: center;
+    position: relative;
+
+  }
+  #inside{
+    position:absolute;
+    top: 0px;
+    left:0px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid blue;
+
+  }
+  .editePanel{
+    width: 400px;
+    height: 500px;
+    position: absolute;
+    top: 100px;
+    left: 500px;
+
+    background-color: grey;
+    z-index: 10;
+    display: none;
+        box-shadow: 10px 10px 5px #888888;
+
+  }
+  #editePaneldelete{
+    position:absolute;
+    top: 3px;
+    left:385px;
+    color:red;
+    cursor: pointer;
+  }
+  .editeDropsDown{
+    width: inherit;
+    height: auto;
+
+
+  }
+  .editeDropsDown:hover{
+    background-color: black;
+    color: white;
+  }
+  #sDropDowns{
+    width: 105px;
+    height: 0px;
+    background-color: white;
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    overflow: scroll;
+    text-align: center;
+    transition: .5s ease;
+  }
+  #eDropDowns{
+    width: 105px;
+    height: 0px;
+    background-color: white;
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    overflow: scroll;
+    text-align: center;
+    transition: .5s ease;
+  }
+
+  .startClass:hover #sDropDowns{
+    height: 100px;
+
+  }
+  .endClass:hover #eDropDowns{
+    height: 100px;
+
+  }
+  .dayBox{
+    position: relative;
+    width: 93%;
+    float: right;
+  }
+  .timeIndexs{
+    position: absolute;
+    top: -10px;
+    left: -70px;
+    width: 100px;
+    z-index: 40;
+    letter-spacing: .2em;
+  }
+  .blank{
+    width: inherit;
+    height: 100px;
+  }
+  .timeLine{
+    width: 120%;
+    height: 1px;
+    border-top: 1px solid red;
+    left: -70px;
+    z-index: 10;
+  }
+  .daysTable{
+    position: relative;
+
+  }
+.bullet{
+  width: 10px;
+  height: 10px;
+  border-radius: 100px;
+  background-color: red;
+  position: absolute;
+  top: -5px;
+  left: 0px;
+}
+.bulletTimeDisplay{
+  position: absolute;
+  top: -13px;
+  left:500px;
+  color: red;
+  letter-spacing: .3em;
+  font-size: .7em;
+}
+.monthDisplay{
+  cursor:pointer;
+
+}
+#monthTitle{
+  background-image: url("space.jpg");
+  background-size: contain;
+
+}
+.previous button{
+  font-size:3em;
+  border: none;
+}
+.next button{
+  font-size:3em;
+  border: none;
+}
+.previous button:hover{
+  background-color: inherit;
+  border: none;
+  color: white;
+}
+.next button:hover{
+  background-color: inherit;
+  border: none;
+  color: white;
+}
+.alertPanel{
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 200px;
+
+  display: none;
+
+
+  z-index: 30;
+
+}
+.anAlert{
+  width: auto;
+  height: 30px;
+  background-color: lightgrey;
+  border: 3px solid black;
+  border-radius: 30px;
+  text-align: center;
+  margin: 3px;
+  position: relative;
+}
+#message{
+
+
+}
+.anAlarmButton{
+  position: absolute;
+  top: 0px;
+  left:200px;
+  cursor:pointer;
+}
+.anAlarmButton:hover{
+  font-size: 2em;
+}
+@keyframes alert {
+  0% { border:3px solid red;}
+  25% { border:3px solid yellow;}
+  50% { border:3px solid blue;}
+  100% { border:3px solid green;}
+}

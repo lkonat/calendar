@@ -1,0 +1,31 @@
+table, th, td {
+   border: 1px solid black;
+   border-collapse: collapse;
+   padding: 3px;
+}
+.examples{
+  background-color: grey;
+  color: white;
+  height: 30px;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+.properties{
+  border: 1px solid black;
+  padding-left: 20px;
+}
+.properties span{
+  color: green;
+}
+.properties p{
+  padding-left: 10px;
+}
+em{
+  color: blue;
+}
+.head{
+  width: 100%;
+  height: auto;
+  background-color: lavender;
+  font-size: 23px;
+}
