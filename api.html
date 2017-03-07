@@ -1,0 +1,458 @@
+<!doctype html>
+<html>
+<head>
+  <title>CMPS 262 calendar</title>
+  <link rel="stylesheet" href="api.css">
+
+</head>
+<body>
+  <div class="head">
+    Calendar <span style="font-size:2em;">API</span>
+  </div>
+  <p style="padding-left:10px;">Calendar implements a three views calendar(year, month and day), and an event making panel to handle editing, deleting and creating events. There is a separate module
+  that implements the Calendar functionality. The calendar
+  module can be accessed through a global variable named
+  <span style="font-size:1.5em; color:lightblue;">calendar</span>. Inside this global variable we have the following
+  functions available:</p>
+  <table>
+    <tr>
+      <th>Function Name</th>
+      <th>Parameters</th>
+      <th>Return Value</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><em>addListener</em></td>
+      <td><em>typeOfListener</em>: provides the type of event listenner <br><em>callback</em>: provides callback</td>
+      <td>None</td>
+      <td>Whenever the calendar changes all listeners are notified.
+        In other words, all callback functions related to the event are invoked.
+
+      <div class="examples">
+        .addListener ( typeOfListener, callBack )
+      </div>
+      <div class="properties">
+        <b>typeOfListener</b>
+          <p>Type:<span>String</span></p>
+          <p>Values Supported: <span> monthViewListeners, viewChanger, panelListener, daychangeCurrentDay, emptyCalendar, monthEventListener, dayEventListener, alertListener.</span>
+         </p>
+         <b>callBack</b>
+          <p>Type:<span>function</span></p>
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>initialize</em></td>
+      <td>none</td>
+      <td>None</td>
+      <td>This function initializes the calendar.</td>
+    </tr>
+    <tr>
+      <td><em>changeCurrentViewTo</em></td>
+      <td><em>typeOfView</em>: provides the type of the view </td>
+      <td>None</td>
+      <td>this function changes the current view of the calendar.
+      <div class="examples">
+        .changeCurrentViewTo ( typeOfView )
+      </div>
+      <div class="properties">
+        <b>typeOfView</b>
+          <p>Type:<span>String</span></p>
+          <p>Values Supported: <span> year, month, day</span>
+         </p>
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>monthChangeCurrentMonth</em></td>
+      <td><em>increaseOrDecrease</em>: provides the increase or decrease of the current month view month </td>
+      <td>None</td>
+      <td>This function go to the next or the previous month of the month view.
+      <div class="examples">
+        .monthChangeCurrentMonth ( increaseOrDecrease )
+      </div>
+      <div class="properties">
+        <b>increaseOrDecrease</b>
+          <p>Type:<span>String</span></p>
+          <p>Values Supported: <span> +, -</span>
+         </p>
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>dayChangeCurrentDay</em></td>
+      <td><em>increaseOrDecrease</em>: provides the increase or decrease of the current day view days </td>
+      <td>None</td>
+      <td>This function go to the next or the previous day of the day view.
+      <div class="examples">
+        .dayChangeCurrentDay ( increaseOrDecrease )
+      </div>
+      <div class="properties">
+        <b>increaseOrDecrease</b>
+          <p>Type:<span>String</span></p>
+          <p>Values Supported: <span> +, -</span>
+         </p>
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>emptyCalendar</em></td>
+      <td><em>whichOne</em>: provides the target </td>
+      <td>None</td>
+      <td>This function empties the calendar on a targeted view.
+      <div class="examples">
+        .emptyCalendar ( whichOne )
+      </div>
+      <div class="properties">
+        <b>whichOne</b>
+          <p>Type:<span>String</span></p>
+          <p>Type Supported: <span> an html element className or id</span><br> <b>Example</b>: <span style="color:red">calendar</span>.emptyCalendar ( <span>"#table0"</span> );
+         </p>
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>attachEvent</em></td>
+      <td><em>title</em>: providess the the title of the event <br>
+        <em>startTime</em>: providess the starting time<br>
+        <em>endTime</em>: providess the ending time
+        <br><em>m,t,w,th,f,s,su</em>: providess weekly repetition.
+        <br><em>repetitionY</em>: providess yearly repetition.
+        <br><em>reminder</em>: providess a reminder time.
+        <br><em>repetitionObj</em>: providess repetitive date.
+
+
+
+
+      </td>
+      <td>Boolean</td>
+      <td>This function creates an event
+      <div class="examples">
+        .attachEvent ( title, startTime, endTime ,m,t,w,th,f,s,su,repetitionY,repetitionObj,reminder)
+      </div>
+      <div class="properties">
+        <b>title</b>
+          <p>Type:<span>String</span></p>
+         <b>startTime</b>
+          <p>Type:<span>string</span><br> <b>Example</b>: <span >"12:00pm"</span></p>
+          <b>endTime</b>
+           <p>Type:<span>string</span> <br> <b>Example</b>: <span >"1:00am"</span></p>
+           <b>m,t,w,th,f,s,su</b>
+            <p>Type:<span>boolean</span> <br> <b>Example</b>: <span >true</span></p>
+            <b>repetionY</b>
+             <p>Type:<span>boolean</span> <br> <b>Example</b>: <span >true</span></p>
+             <b>reminder</b>
+              <p>Type:<span>String</span> <br> <b>Example</b>: <span >30 minutes before</span></p>
+             <b>repetionObj</b>
+              <p>Type:<span>object</span> </p>
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>getEventsAvailableIn</em></td>
+      <td><em>year</em>: provides the the year of the event <br><em>month</em>: provides the month of the event<br><em>day</em>: provides the day of the event</td>
+      <td>array</td>
+      <td>This function return an array with all the event available on the date providesd.
+      <div class="examples">
+        .getEventsAvailableIn ( year, month, day )
+      </div>
+      <div class="properties">
+        <b>year</b>
+          <p>Type:<span>Number</span> <br><b>Example</b>: <span >2017</span></p>
+         <b>month</b>
+          <p>Type:<span>Number</span><br> <b>Example</b>: <span >2</span></p>
+          <b>day</b>
+           <p>Type:<span>number</span> <br> <b>Example</b>: <span >21</span></p>
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>addMonthEvent</em></td>
+      <td><em>location</em>: provides the location you want to draw the event inside the month view <br><em>TheEvent</em>: provides the event</td>
+      <td>none</td>
+      <td>This function draw an event providesd inside the month view.
+      <div class="examples">
+        .addMonthEvent ( location, TheEvent )
+      </div>
+      <div class="properties">
+        <b>location</b>
+          <p>Type:<span>HTML element id or className </span> <br><b>Example</b>: <span >#td1</span></p>
+         <b>TheEvent</b>
+          <p>Type:<span>object or array</span></p>
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>getAnEvent</em></td>
+      <td><em>eventKey</em>: provides the object key of the event </td>
+    <td>object</td>
+      <td>This function return an event that matchs the providesd object key.
+      <div class="examples">
+        .getAnEvent ( eventKey )
+      </div>
+      <div class="properties">
+        <b>eventKey</b>
+          <p>Type:<span>string </span> <br><b>Example</b>: <span >1</span></p>
+
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>getYearCurrents</em></td>
+      <td><em>which</em>: provides the attribute of the current year </td>
+    <td>Number</td>
+      <td>This function return the current year, day or month.
+      <div class="examples">
+        .getYearCurrents ( which )
+      </div>
+      <div class="properties">
+        <b>which</b>
+          <p>Type:<span>string </span> <br><b>Example</b>: <span >month</span></p>
+
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>getMonthCurrents</em></td>
+      <td><em>which</em>: provides the attribute of the current Month view </td>
+    <td>Number</td>
+      <td>This function return the current year or month of the month view.
+      <div class="examples">
+        .getMonthCurrents ( which )
+      </div>
+      <div class="properties">
+        <b>which</b>
+          <p>Type:<span>string </span> <br><b>Example</b>: <span >month</span></p>
+
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>getDayCurrents</em></td>
+      <td><em>which</em>: provides the attribute of the current day view </td>
+    <td>Number</td>
+      <td>This function return the current year, day or month of the day view.
+      <div class="examples">
+        .getDayCurrents ( which )
+      </div>
+      <div class="properties">
+        <b>which</b>
+          <p>Type:<span>string </span> <br><b>Example</b>: <span >month</span></p>
+
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>addDayEvent</em></td>
+      <td><em>location</em>: provides the location you want to draw the event inside the month view <br><em>TheEvent</em>: provides the event</td>
+      <td>none</td>
+      <td>This function draw an event providesd inside the day view.
+      <div class="examples">
+        .addDayEvent ( location, TheEvent )
+      </div>
+      <div class="properties">
+        <b>location</b>
+          <p>Type:<span>HTML element id or className </span> <br><b>Example</b>: <span >#td1</span></p>
+         <b>TheEvent</b>
+          <p>Type:<span>object or array</span></p>
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>updatePanel</em></td>
+      <td><em>event</em>: provides an event of the mouse click <br><em>where</em>: provides the location we want the panel to appear</td>
+      <td>none</td>
+      <td>This function changes the event making panel position.
+      <div class="examples">
+        .updatePanel ( event, where )
+      </div>
+      <div class="properties">
+        <b>event</b>
+          <p>Type:<span>mouse click's event </span> </p>
+         <b>where</b>
+          <p>Type:<span>string</span><br><b>example:</b><span>month, day, year</span></p>
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>addPanelCurrentTarget</em></td>
+      <td><em>which</em>: provides the attribute of the panel <br><em>value</em>: provides the value we would like to add</td>
+      <td>none</td>
+      <td>This function keep track of the id of the event for the event making panel. so, in case the panel wants to delete, it already have the targeted event id.
+      <div class="examples">
+        .addPanelCurrentTarget ( which, value )
+      </div>
+      <div class="properties">
+        <b>which</b>
+          <p>Type:<span>string </span><br><b>example:</b><span>panelCurrentID</span> </p>
+         <b>where</b>
+          <p>Type:<span>string or number</span><br><b>example:</b><span>1</span></p>
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>getPanelTarget</em></td>
+      <td>none</td>
+    <td>Number</td>
+      <td>This function return the current event making panel target.
+      <div class="examples">
+        .getPanelTarget ( )
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>editeEvent</em></td>
+      <td><em>Id</em>: providess the key of object event <br><em>title</em>: providess the title<br><em>day</em>: providess the day<br><em>month</em>: providess the month<br><em>year</em>: providess the year<br><em>starTime</em>: providess the sarting time<br><em>endTime</em>: providess the end time<br><em>repetitionYearly</em>: if the event is repeated yearly
+        <br><em>reminder</em>: providess a reminder time.
+        <br><em>repetitionObj</em>: providess repetitive date.
+      </td>
+      <td>Boolean</td>
+      <td>This function edit an event.
+      <div class="examples">
+    .editeEvent(Id,title,day,month,year,sTime,eTime,repetitionY,repetitionObj,reminder)
+      </div>
+      <div class="properties">
+        <b>Id</b>
+          <p>Type:<span>string or number</span> <br><b>Example</b>: <span >1</span></p>
+         <b>title</b>
+          <p>Type:<span>String</span></p>
+          <b>day</b>
+           <p>Type:<span>number</span></p>
+           <b>month</b>
+            <p>Type:<span>number</span></p>
+            <b>year</b>
+             <p>Type:<span>number</span></p>
+             <b>startTime</b>
+              <p>Type:<span>string</span></p>
+              <b>endTime</b>
+               <p>Type:<span>string</span></p>
+               <b>repetitionYearly</b>
+                <p>Type:<span>boolean</span></p>
+                <b>reminder</b>
+                 <p>Type:<span>String</span> <br> <b>Example</b>: <span >30 minutes before</span></p>
+                <b>repetionObj</b>
+                 <p>Type:<span>object</span> </p>
+
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>deleteEvent</em></td>
+      <td>none</td>
+    <td>Boolean</td>
+      <td>This function deletes the targeted event of the event making panel.
+      <div class="examples">
+        .deleteEvent ( )
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>refreshDay()</em></td>
+      <td>none</td>
+    <td>none</td>
+      <td>This function refreshes the day view.
+      <div class="examples">
+        .refreshDay ( )
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>displayAMonth</em></td>
+      <td><em>monthCurrentYear</em>: provides the current year of the month view <br><em>monthCurrentMonth</em>: provides the current month of the month view </td>
+      <td>none</td>
+      <td>This function changes the month view to the providesd month and year.
+      <div class="examples">
+        .displayAMonth ( monthCurrentYear, monthCurrentMonth )
+      </div>
+      <div class="properties">
+        <b>monthCurrentYear</b>
+          <p>Type:<span>number </span><br><b>example:</b><span>2017</span> </p>
+         <b>monthCurrentMonth</b>
+          <p>Type:<span>number</span><br><b>example:</b><span>3</span></p>
+
+
+      </div>
+
+    </td>
+
+    </tr>
+    <tr>
+      <td><em>desactivateAnEvent</em></td>
+      <td><em>id</em>: provides the object key of the event</td>
+    <td>Boolean</td>
+      <td>This function dis activates an event.
+      <div class="examples">
+        .desactivateAnEvent ( id )
+      </div>
+      <div class="properties">
+        <b>id</b>
+          <p>Type:<span>string or number</span> <br><b>Example</b>: <span >1</span></p>
+
+
+
+      </div>
+
+    </td>
+
+    </tr>
+  </table>
+</body>
+</html>
