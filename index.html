@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title >Calendar</title>
+
+    <script src="jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" href="styling2.css">
+  </head>
+  <body  onmousemove="mousePosition(event)" onmouseup="mouseUp(event);">
+    <div id="successDiv"></div>
+    <div class="editePanel">
+      <center style="font-size:23px;">Edit</center>
+      <div id="editePaneldelete">X</div>
+      <table>
+        <tr>
+          <td><button id="cancel" type="button" name="button" style="color:red;">Cancel</button></td>
+          <td><button id="save" type="button" name="button">Save</button></td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td style="font-size:23px;">Event:</td><td><p id="eventInfo" ></p></td>
+        </tr>
+
+      </table>
+      <table>
+
+
+        <tr><td>Title:</td><td><input id="title" type="text" name="" value="event title"></td></tr>
+        <tr>
+          <td>Month:</td><td><input id="eMonth" type="text" name="" value=""></td><td id="eMonthP"></td>
+        </tr>
+        <tr>
+          <td>Day:</td><td><input id="eDay" type="text" name="" value=""></td>
+        </tr>
+        <tr>
+          <td>Year:</td><td><input id="eYear" type="text" name="" value=""></td>
+        </tr>
+
+
+
+      </table>
+      <table>
+        <tr>
+          <td>Start  :</td> <td class="startClass" style="position:relative;"><input id="start" type="text" name="" value=""> <div id="sDropDowns"><div class="editeDropsDown">none</div> </div></td><td>End:</td><td class="endClass" style="position:relative;"><input id="end" type="text" name="" value=""><div id="eDropDowns"><div class="editeDropsDown">none</div> </div></td>
+        </tr>
+      </table>
+      <div  style="width:inherit; text-align:center;"> Event Repetition &#10226; </div>
+      <div id="customizeRep">  &#9998; Customize &#8227;  </div>
+      <div id="weeklyRep">&#10003; Choose Weekly
+      <div >
+        <input type="checkbox" name="edit" value="m">M
+        <input type="checkbox" name="edit" value="t">T
+        <input type="checkbox" name="edit" value="w">W
+        <input type="checkbox" name="edit" value="th">T
+        <input type="checkbox" name="edit" value="f">F
+        <input type="checkbox" name="edit" value="s">S
+        <input type="checkbox" name="edit" value="su"><span style="color:red">S</span>
+     </div>
+     </div>
+     <div id="editPanelYearly">  &#9998; Repeat Yearly &#8227;<input type="checkbox" name="edit" value="yearly"></div>
+     <div id="editPanelReminder">  &#9998; Reminds me &#8227;<input id="reminder" type="text" name="" value="Exact Time" disabled style="border:none">
+       <div id="reminderDropDownEdit">
+         <div>Exact Time</div>
+         <div>30 Minute Before</div>
+         <div>45 Minute Before</div>
+         <div> 1 hour Before</div>
+         <div> 2 hour Before</div>
+         <div> 1 day Before</div>
+         <div> 2 day Before</div>
+         <div> A week Before</div>
+         <div> A month Before</div>
+     </div>
+   </div>
+    </div>
+    <div class="alertPanel">
+      <center style="color:black; font-size:2em;">ALERT</center>
+      <div id="message"></div>
+
+    </div>
+
+<div class="firstBox">
+
+
+      <div class="main" >
+
+
+
+        <div id="smallInfoScreen">
+
+           <div id="sContent"> </div>
+
+        </div>
+        <div id="monthEventsInfoScreen">  </div>
+        <div class="eventMakingPanel" id="panel" onmousedown="mouseDown(event)" onmouseup="mouseUp(event);" >
+            <div class="deleteEMP">X</div>
+            <div class="" style="margin-left:10px; margin-top:10px;"> <span >Even</span> | <span>reminder</span>  </div>
+            <input id="myEventInput" type="text" name="" value="event" style=" margin-left:10px; width:92%; height:30px; font-size:18px;" autofocus><br> <br>
+            <div id="eventDate"style="margin-left:10px;">When </div>
+            <div class="timeInputs">
+              <div class="hourInputs">
+                From <input id="time1" type="text" name="" value="none">
+               <div id="time1DropDown"><div class='dropDownsElt '>none</div></div>
+              </div>
+              <div class="minuteInputs">
+               To <input id="time2"type="text" name="" value="none"> <br><br>
+               <div id="time2DropDown"><div class='dropDownsElt '>none</div></div>
+              </div>
+            </div>
+            <div id="repetitionOptions" style="width:inherit; text-align:center;"> Event Repetition &#10226; </div>
+             <div id="customizeRep" >&#9998; Customize &#8227;</div>
+             <div id="weeklyRep" ><span id="weeklyRepTitle">&#10003; Choose Weekly:</span>
+             <div >
+               <input type="checkbox" name="eventMake" value="m">M
+               <input type="checkbox" name="eventMake" value="t">T
+               <input type="checkbox" name="eventMake" value="w">W
+               <input type="checkbox" name="eventMake" value="th">T
+               <input type="checkbox" name="eventMake" value="f">F
+               <input type="checkbox" name="eventMake" value="s">S
+               <input type="checkbox" name="eventMake" value="su"><span style="color:red">S</span>
+            </div>
+            </div>
+            <div id="eventPanelYearly">  &#9998; Repeat Yearly &#8227;<input type="checkbox" name="eventMake" value="yearly"></div>
+            <div id="eventPanelReminder">  &#9998; Reminds me &#8227;<input id="reminder" type="text" name="" value="Exact Time" disabled style="border:none">
+              <div id="reminderDropDownEvent">
+                <div>Exact Time</div>
+                <div>30 Minute Before</div>
+                <div>45 Minute Before</div>
+                <div> 1 hour Before</div>
+                <div> 2 hour Before</div>
+                <div> 1 day Before</div>
+                <div> 2 day Before</div>
+                <div> A week Before</div>
+                <div> A month Before</div>
+            </div>
+          </div>
+          <div class="" style="position:relative; margin-top:130px;">
+            <button type="button" name="button" id="buttonEdite">Edite</button>
+            <button type="button" name="button" id="buttonCreate">create</button>
+            <button type="button" name="button" id="buttonDelete">Delete</button>
+          </div>
+           <div class="arrow"></div>
+           <div class="littleCalendar" id="littleCalendar">
+             <div id="yearDisplay" value=""  style="font-size:1.5em; color:white;"> 2017</div>
+             <center>
+          <table id="t1">
+            <tr>
+              <td><div id="tday">Today</div></td>
+              <td><div id="p" style="font-size:1.3em;">&#10094;</div></td>
+              <td><div id="n"  style="font-size:1.3em;">&#10095;</div></td>
+            </tr>
+          </table>
+          </center>
+             <center>
+          <table>
+            <tr>
+              <td><div id="monthDisplay" value="" style="color:white;"> Decenber</div></td>
+            </tr>
+          </table>
+          </center>
+       <table class="littleCalendarTable">
+
+         <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+         <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+         <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+         <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+         <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+         <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+         <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+       </table>
+           </div>
+        </div>
+
+        <div id="setting">&#9881;  <div class="settings">
+          <div class="" style="width:inherit; text-align:center; font-size:1.5em;">   Year View Days:  </div>
+          <div class="" style="width:230Px; border:1px dashed black; margin:0 auto;">
+            <table >
+              <tr>
+                <td>On Click &#8227;</td>
+               <td><input type="radio" name="yearClick" value="event" > Set Event
+                </td>
+                 <td><input type="radio" name="yearClick" value="day" checked> show Day</td>
+              </tr>
+              <tr>
+                <td>On Hover &#8227;
+               </td>
+               <td>
+                 <input type="radio" name="hover" value="yes" checked> Display
+                 </td>
+                 <td><input type="radio" name="hover" value="no"> None</td>
+              </tr>
+            </table>
+          </div>
+
+
+
+        </div></div>
+
+        <div class="menus">
+          <li ><a href="#"  >2017</a></li>
+          <li style="float:left;"> <a href="#"id="today">Today</a></li>
+          <li> <a href="#"  id="day">Day</a></li>
+          <li ><a href="#"  id="month">Month</a></li>
+          <li ><a href="#"  id="year">Year</a></li>
+
+        </div>
+        <div class="calendar">
+
+          <div class="calendarBody" id="0" >
+            <center class="monthDisplay"  id="monthDisplay0">January</center>
+      <table id="ourTable" class="table0" >
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+
+      </table>
+          </div>
+          <div class="calendarBody" id="1" >
+              <center class="monthDisplay" id="monthDisplay1">January</center>
+      <table class="table1">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+     </table>
+          </div>
+          <div class="calendarBody" id="2">
+            <center class="monthDisplay"  id="monthDisplay2">January</center>
+      <table class="table2">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+</table>
+          </div>
+          <div class="calendarBody" id="3">
+              <center class="monthDisplay" id="monthDisplay3">January</center>
+      <table class="table3">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+</table>
+          </div>
+          <div class="calendarBody" id="4">
+              <center class="monthDisplay" id="monthDisplay4">January</center>
+      <table class="table4">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+</table>
+          </div>
+          <div class="calendarBody" id="5">
+              <center class="monthDisplay" id="monthDisplay5">January</center>
+      <table class="table5">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+</table>
+          </div>
+          <div class="calendarBody" id="6">
+              <center class="monthDisplay" id="monthDisplay6">January</center>
+      <table class="table6">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+</table>
+          </div>
+          <div class="calendarBody" id="7">
+              <center class="monthDisplay" id="monthDisplay7">January</center>
+      <table class="table7">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+      </table>
+          </div>
+          <div class="calendarBody" id="8">
+            <center class="monthDisplay" id="monthDisplay8">January</center>
+      <table class="table8">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+     </table>
+          </div>
+          <div class="calendarBody" id="9">
+              <center class="monthDisplay" id="monthDisplay9">January</center>
+      <table class="table9">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+      </table>
+          </div>
+          <div class="calendarBody" id="10">
+            <center class="monthDisplay" id="monthDisplay10">January</center>
+      <table class="table10">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+     </table>
+          </div>
+          <div class="calendarBody" id="11">
+            <center class="monthDisplay" id="monthDisplay11">December</center>
+      <table class="table11">
+
+        <tr > <td class="box" id="sunday">S</td class="box"><td  class="box">M</td><td class="box">T</td><td class="box">W</td><td class="box">T</td><td class="box">F</td><td class="box">S</td></tr>
+        <tr class="row1"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row2"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row3"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+        <tr class="row4"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row5"><td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td> </tr>
+        <tr class="row6"> <td class="boxSunday"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td><td class="box"></td></tr>
+      </table>
+          </div>
+        </div>
+
+        <div class="oneMonth" >
+          <table id="monthTitle" style="width:inherit;">
+            <tr>
+              <td><div class="previous"><button type="button" name="button" >&#10094;</button></div> </td>
+              <td><center ><h1 id="titleMonth">January <br> 2017</h1></center></td>
+              <td><div class="next"><button type="button" name="button"     >&#10095;</button></div></td>
+            </tr>
+          </table>
+
+
+          <div class="aCalendarBody" id="aMonth">
+
+      <table class="tableMonth" >
+
+        <tr class="row0"> <td class="box1" id="sunday">S</td class="box1"><td  class="box1">M</td><td class="box1">T</td><td class="box1">W</td><td class="box1">T</td><td class="box1">F</td><td class="box1">S</td></tr>
+        <tr class="row1"><td class="box1Sunday"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td> </tr>
+        <tr class="row2"> <td class="box1Sunday"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td></tr>
+        <tr class="row3"> <td class="box1Sunday"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td></tr>
+        <tr class="row4"><td class="box1Sunday"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td></tr>
+        <tr class="row5"><td class="box1Sunday"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td></tr>
+        <tr class="row6"> <td class="box1Sunday"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td><td class="box1"></td></tr>
+          </table>
+          </div>
+        </div>
+        <div class="aDay" >
+          <div class="daySchedule">
+            <table id="dayTitles">
+
+              <tr>
+                <td><button class="aDayNavigation" id="dayBackward" >&#10094;</button></td>
+                <td><center><h1 id="theDay">Wednesday</h1></center></td>
+                <td><button class="aDayNavigation" id="dayForward" style="float:right;" >&#10095;</button></td>
+              </tr>
+            </table>
+
+            <div class="firstCell" id="allDay" style="float:left; overflow:scroll; position:relative;"> </div>
+            <div class="dayTimes">
+              <div class="blank"></div>
+              <div class="daysTable">
+                <div class="dayBox"><div class="timeIndexs">12 AM</div><div style="border-top:1px solid lightblue;"class="insideCell" id="1200am"></div> <div class="insideCell" id="1230am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">1 AM</div> <div class="insideCell" id="100am"></div> <div class="insideCell" id="130am"></div></div>
+                <div class="dayBox"> <div class="timeIndexs">2 AM</div><div class="insideCell" id="200am"></div> <div class="insideCell" id="230am"></div></div>
+                <div class="dayBox"> <div class="timeIndexs">3 AM</div><div class="insideCell" id="300am"></div> <div class="insideCell" id="330am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">4 AM</div> <div class="insideCell" id="400am"></div> <div class="insideCell" id="430am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">5 AM</div> <div class="insideCell" id="500am"></div> <div class="insideCell" id="530am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">6 AM</div> <div class="insideCell" id="600am"></div> <div class="insideCell" id="630am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">7 AM</div> <div class="insideCell" id="700am"></div> <div class="insideCell" id="730am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">8 AM</div> <div class="insideCell" id="800am"></div> <div class="insideCell" id="830am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">9 AM</div> <div class="insideCell" id="900am"></div> <div class="insideCell" id="930am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">10 AM</div> <div class="insideCell" id="1000am"></div> <div class="insideCell" id="1030am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">11 AM</div> <div class="insideCell" id="1100am"></div> <div class="insideCell" id="1130am"></div></div>
+                <div class="dayBox"><div class="timeIndexs">12 PM</div> <div class="insideCell" id="1200pm"></div> <div class="insideCell" id="1230pm"></div></div>
+                <div class="dayBox"> <div class="timeIndexs">1 PM</div><div class="insideCell" id="100pm"></div> <div class="insideCell" id="130pm"></div></div>
+                <div class="dayBox"> <div class="timeIndexs">2 PM</div><div class="insideCell" id="200pm"></div> <div class="insideCell" id="230pm"></div></div>
+                <div class="dayBox"> <div class="timeIndexs">3 PM</div><div class="insideCell" id="300pm"></div> <div class="insideCell" id="330pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">4 PM</div> <div class="insideCell" id="400pm"></div> <div class="insideCell" id="430pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">5 PM</div> <div class="insideCell" id="500pm"></div> <div class="insideCell" id="530pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">6 PM</div> <div class="insideCell" id="600pm"></div> <div class="insideCell" id="630pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">7 PM</div> <div class="insideCell" id="700pm"></div> <div class="insideCell" id="730pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">8 PM</div> <div class="insideCell" id="800pm"></div> <div class="insideCell" id="830pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">9 PM</div> <div class="insideCell" id="900pm"></div> <div class="insideCell" id="930pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">10 PM</div> <div class="insideCell" id="1000pm"></div> <div class="insideCell" id="1030pm"></div></div>
+                <div class="dayBox"><div class="timeIndexs">11 PM</div> <div class="insideCell" id="1100pm"></div> <div class="insideCell" id="1130pm"></div></div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+</div>
+
+    <script type="text/javascript" src="calendarDataStructure.js"> </script>
+    <script type="text/javascript" src="calendar.js"> </script>
+    <script type="text/javascript">
+    $("input").change(function(){
+      $(this).css({"animation-name":"inputs","animation-duration":"1s","animation-iteration-count":"1"});
+      var x=this;
+      setTimeout(function(){
+        $(x).css({"animation-name":"none"});},1000);
+    });
+ //$("input").css({"background-color":"inherit","border":"normal"});
+    $("#reminderDropDownEdit").click(function(e){
+      $(".editePanel #reminder").val(e.target.innerHTML);
+    });
+    $("#reminderDropDownEvent").click(function(e){
+      $(".eventMakingPanel #reminder").val(e.target.innerHTML);
+    });
+
+    function initializeOptionSetting(){
+      var optionClick = localStorage.getItem("yearClick");
+      $("input[name=yearClick][value="+optionClick+"]").prop("checked",true);
+      var optionHover = localStorage.getItem("yearHover");
+      $("input[name=hover][value="+optionHover+"]").prop("checked",true);
+    }
+    initializeOptionSetting();
+    var monthString= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var dayString =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+    $('input:radio[name=yearClick]').change(function(){
+      var target = $('input:radio[name=yearClick]:checked').val();
+      localStorage.setItem("yearClick",target);
+     });
+     $('input:radio[name=hover]').change(function(){
+       var target = $('input:radio[name=hover]:checked').val();
+       localStorage.setItem("yearHover",target);
+      });
+      function showSetting(){
+
+      }
+      function hideSetting(){
+          $(".settings").hide();
+      }
+    $("#setting").click(function(e){
+      if($(".settings")[0].style.display==="block"){
+        $(".settings").animate({width:0,height:0,left:0,top:0},400,function(){
+
+           //$(".settings").css({"height":"300","width":"300","top":"25px","left":"0px"});
+          $(".settings").hide();
+        });
+
+      }else {
+        $(".settings").css("top",(e.currentTarget.offsetTop));
+        $(".settings").css("left",( e.currentTarget.offsetLeft));
+        $(".settings").css("height","0px");
+        $(".settings").css("width","0px");
+        $(".settings").animate({width:300,height:300,left:0,top:25},400,function(){
+
+           $(".settings").css({"height":"300","width":"300","top":"25px","left":"0px"});
+
+        });
+        $(".settings").show();
+      }
+    });
+    $("body").click(function(e){
+
+       if(e.target.id!=="setting" && $(".settings")[0].style.display==="block"){
+         $(".settings").animate({width:0,height:0,left:0,top:0},400,function(){
+           $(".settings").hide();
+         });
+       }
+      if(e.target.className!=="meif" && e.target.className!=="eventDivsExtra" ){
+
+
+        $("#monthEventsInfoScreen").hide();
+      }
+    });
+    $(".deleteEMP").click(function(){$(".eventMakingPanel").hide();
+    $("#monthEventsInfoScreen").hide();
+  });
+$("#myEventInput").click(function(){
+  if($(this).val()==="Please enter a title"){
+    $(this).val("");
+  }
+})
+$("#day").click(function(){
+  calendar.changeCurrentViewTo("day");
+});
+$("#year").click(function(){
+  calendar.changeCurrentViewTo("year");
+});
+$("#month").click(function(){
+  calendar.changeCurrentViewTo("month");
+});
+$(".previous").click(function(){
+   $(".eventMakingPanel").hide();
+  calendar.monthChangeCurrentMonth("-");
+  initializeMonthOnHoverProperties();
+});
+$(".next").click(function(){
+   $(".eventMakingPanel").hide();
+  calendar.monthChangeCurrentMonth("+");
+  initializeMonthOnHoverProperties();
+});
+$("#dayBackward").click(function(){
+  $(".eventMakingPanel").hide();
+  calendar.emptyCalendar(".aDay");
+  calendar.dayChangeCurrentDay('-');
+});
+$("#dayForward").click(function(){
+  $(".eventMakingPanel").hide();
+  calendar.emptyCalendar(".aDay");
+  calendar.dayChangeCurrentDay('+');
+});
+$("#today").click(function(){
+  $(".eventMakingPanel").hide();
+  if($(".oneMonth")[0].style.display ==="block"){
+    calendar.showToday("month");
+    initializeMonthOnHoverProperties();
+  }else if ($(".aDay")[0].style.display==="block") {
+    calendar.emptyCalendar(".aDay");
+    calendar.showToday("day");
+    scrollToCurrentTime();
+  }
+});
+$("#buttonDelete").click(function(){
+
+  var succes =calendar.deleteEvent();//delete the panel target
+  if(succes){
+    displaySucces("yes");
+  }else {
+    displaySucces("no");
+  }
+  $(".eventMakingPanel").hide();
+  $("#monthEventsInfoScreen").hide();
+  $(".editePanel").hide();
+  $(".tableMonth").css("filter","none");
+});
+
+$("#buttonEdite").click(function(){
+  tempObjs.clear(); /// for customize time data object
+  $("html, body").animate({scrollTop:0}, 600);
+    $(".eventMakingPanel").hide();
+   $(".oneMonth, .calendar, .aDay").css("filter","blur(10px)");
+  var targetId = calendar.getPanelTarget();
+  var eltInfos = calendar.getAnEvent(targetId);
+  $(".editePanel").css({"left":(($(window).width())/2)-$(".editePanel").width()/2,"top":(($(window).height())/2)-$(".editePanel").height()/2});
+  $(".editePanel").show();
+  var d=new Date(eltInfos.attributes.year,eltInfos.attributes.month,eltInfos.attributes.day).getDay();
+  if(eltInfos.attributes.startTime && eltInfos.attributes.startTime!=="none"){
+    $(".editePanel #eventInfo").html( dayString[d]+" "+ monthString[eltInfos.attributes.month]+", "+eltInfos.attributes.year+"<br>"+ eltInfos.attributes.title+" set from:"+eltInfos.attributes.startTime+" to: "+eltInfos.attributes.endTime);
+  }else {
+    $(".editePanel #eventInfo").text(eltInfos.attributes.title+" set to start at midnigth on "+dayString[d]+" "+ monthString[eltInfos.attributes.month]+", "+eltInfos.attributes.year );
+  }
+  $(".editePanel #title").val(eltInfos.attributes.title);
+  $(".editePanel #start").val(eltInfos.attributes.startTime?eltInfos.attributes.startTime:"none");
+    $(".editePanel #end").val(eltInfos.attributes.endTime?eltInfos.attributes.endTime:"none");
+    $(".editePanel #eMonth").val(eltInfos.attributes.month+1);
+    $(".editePanel #eMonthP").text(monthString[eltInfos.attributes.month]);
+    $(".editePanel #eDay").val(eltInfos.attributes.day);
+    $(".editePanel #eYear").val(eltInfos.attributes.year);
+//add all the repetions options
+var ev=eltInfos;
+littleCalendar(ev.attributes.year,ev.attributes.month,".littleCalendarTable");
+getAndDisplayRepetitions(ev,"editEvent");
+//.......
+
+});
+$("#eMonth").change(function(){
+
+  if(monthString[$(".editePanel #eMonth").val()-1]){
+    $(".editePanel #eMonthP").text(monthString[$(".editePanel #eMonth").val()-1]);
+  }else {
+    $(".editePanel #eMonthP").html("<span style='color:red;'>* Invalid number!</span>");
+  }
+});
+$(".editePanel #cancel").click(function(){
+  $(".editePanel").hide();
+ $(".oneMonth, .calendar, .aDay").css("filter","none");
+});
+
+function interpretedData(x,reverse){
+  x=x.trim();
+  if(reverse==="reverse"){
+    if(x==="none"){return "Exact Time";}
+    else if(x==="30.minute"){return "30 Minute Before";}
+    else if(x==="45.minute"){return "45 Minute Before";}
+    else if(x==="1.hour"){return "1 hour Before";}
+    else if(x==="2.hour"){return "2 hour Before";}
+    else if(x==="1.day"){return "1 day Before";}
+    else if(x==="2.day"){return "2 day Before";}
+    else if(x==="1.week"){return "A week Before";}
+    else if(x==="1.month"){return "A month Before";}
+    else {
+      return false;
+    }
+  }else {
+    if(x==="Exact Time"){return "none";}
+    else if(x==="30 Minute Before"){return "30.minute";}
+    else if(x==="45 Minute Before"){return "45.minute";}
+    else if(x==="1 hour Before"){return "1.hour";}
+    else if(x==="2 hour Before"){return "2.hour";}
+    else if(x==="1 day Before"){return "1.day";}
+    else if(x==="2 day Before"){return "2.day";}
+    else if(x==="A week Before"){return "1.week";}
+    else if(x==="A month Before"){return "1.month";}
+    else {
+      return false;
+    }
+  }
+
+}
+function initializeEntries(checkboxName){
+  var repetitionY=$("input[type='checkbox'][name="+checkboxName+"][value='yearly']").prop("checked", false);
+  var m=$("input[type='checkbox'][name="+checkboxName+"][value='m']").prop("checked", false);
+  var t=$("input[type='checkbox'][name="+checkboxName+"][value='t']").prop("checked", false);
+  var w=$("input[type='checkbox'][name="+checkboxName+"][value='w']").prop("checked", false);
+  var th=$("input[type='checkbox'][name="+checkboxName+"][value='th']").prop("checked", false);
+  var f=$("input[type='checkbox'][name="+checkboxName+"][value='f']").prop("checked", false);
+  var s=$("input[type='checkbox'][name="+checkboxName+"][value='s']").prop("checked", false);
+  var su=$("input[type='checkbox'][name="+checkboxName+"][value='su']").prop("checked", false);
+  if(checkboxName ==="edit"){
+    $("#editPanelReminder #reminder").val("Exact Time");
+  }else if (checkboxName ==="eventMake") {
+    $("#eventPanelReminder #reminder").val("Exact Time");
+  }
+
+}
+$(".editePanel #save").click(function(){
+  if(!checkInputs($(".editePanel #start").val()) || !checkInputs($(".editePanel #end").val())){ return;  }
+  var targetId = calendar.getPanelTarget();
+  var month=false;
+  var day =false;
+  var year = false;
+  var repetitionY=$("input[type='checkbox'][name='edit'][value='yearly']").prop("checked");
+  var m=$("input[type='checkbox'][name='edit'][value='m']").prop("checked");
+  var t=$("input[type='checkbox'][name='edit'][value='t']").prop("checked");
+  var w=$("input[type='checkbox'][name='edit'][value='w']").prop("checked");
+  var th=$("input[type='checkbox'][name='edit'][value='th']").prop("checked");
+  var f=$("input[type='checkbox'][name='edit'][value='f']").prop("checked");
+  var s=$("input[type='checkbox'][name='edit'][value='s']").prop("checked");
+  var su=$("input[type='checkbox'][name='edit'][value='su']").prop("checked");
+  var reminder=interpretedData($("#editPanelReminder #reminder").val(),"none");
+  if(!reminder){
+   alert("please specify a reminder");
+    return;} // if there is a false value;
+  var repetitionObj=tempObjs.getObjects();
+  var starTime =$(".editePanel #start").val()==="none"?false:$(".editePanel #start").val();
+  var endTime =$(".editePanel #end").val()==="none"?false:$(".editePanel #end").val();
+  var num=[0,1,2,3,4,5,6,7,8,9,10,11,12];
+  if(num.indexOf($(".editePanel #eMonth").val()-1)!==-1){
+    month =parseInt($(".editePanel #eMonth").val()-1);
+  }
+
+  if(parseInt($(".editePanel #eYear").val())){
+    year =parseInt($(".editePanel #eYear").val());
+  }
+
+  if(parseInt($(".editePanel #eDay").val())){
+    var lastDay = new Date(year, month + 1, 0).getDate();
+    var firstDay = new Date(year, month, 1).getDate();
+
+    day =parseInt($(".editePanel #eDay").val());
+    if(day>=firstDay && day<=lastDay){
+      //alert("good");
+    }else {
+    displaySucces("no");
+    alert("the Month you enter will not include "+ day+ " as a day");
+    day =false;
+    }
+  }
+
+  if((month || month===0) && day && year){
+    //var success=calendar.editeEvent(targetId,$(".editePanel #title").val(),day,month,year,starTime,endTime,repetitionY,repetitionMonthly,repetitionDay);
+    var ty =new Date();
+    var modificationDate={year:ty.getFullYear(),month:ty.getMonth,day:ty.getDate(),hour:ty.getHours(), minute:ty.getMinutes(),second:ty.getSeconds()};
+    var success =calendar.editeEvent(targetId,false,modificationDate,$(".editePanel #title").val(),day,month,year,starTime,endTime,m,t,w,th,f,s,su,repetitionY,repetitionObj,reminder);
+    if(success){
+      //alert("Edited");
+      // display success check mark
+      displaySucces("yes");
+      //...............end
+      $(".editePanel").hide();
+      $(".oneMonth, .calendar, .aDay").css("filter","none");
+      $(".eventMakingPanel").hide();
+
+    }else {
+      //alert("error couldn't edit");
+      displaySucces("no");
+    }
+  }else {
+    displaySucces("no");
+  //  alert("please enter valid data");
+
+
+  }
+  initializeEntries("edit");
+});
+
+function displaySucces(x){
+  if(x==="yes"){
+    $("#successDiv").show();
+       $("#successDiv").css({"color":"white","width":"0px;","left":(($(window).width())/2)-$("#successDiv").width()/2,"top":(($(window).height())/2)-$("#successDiv").height()/2});
+     $("#successDiv").html("&#10003;");
+       $("#successDiv").animate({width:150}, 600, function(){
+         setTimeout(function(){
+             $("#successDiv").hide();
+         },1000);
+       });//
+  }else {
+    $("#successDiv").show();
+       $("#successDiv").css({"color":"red","width":"0px;","left":(($(window).width())/2)-$("#successDiv").width()/2,"top":(($(window).height())/2)-$("#successDiv").height()/2});
+     $("#successDiv").html("&#10005;");
+       $("#successDiv").animate({width:150}, 600, function(){
+         setTimeout(function(){
+             $("#successDiv").hide();
+         },1000);
+
+       });
+  }
+
+}
+$("#editePaneldelete").click(function(){
+  $(".editePanel").hide();
+  $(".oneMonth, .calendar, .aDay").css("filter","none");
+
+});
+$("#buttonCreate").click(function(){
+  //test
+  var repetitionY=$("input[type='checkbox'][name='eventMake'][value='yearly']").prop("checked");
+  var m=$("input[type='checkbox'][name='eventMake'][value='m']").prop("checked");
+  var t=$(".eventMakingPanel input[type='checkbox'][value='t']").prop("checked");
+  var w=$(".eventMakingPanel input[type='checkbox'][value='w']").prop("checked");
+  var th=$(".eventMakingPanel input[type='checkbox'][value='th']").prop("checked");
+  var f=$(".eventMakingPanel input[type='checkbox'][value='f']").prop("checked");
+  var s=$(".eventMakingPanel input[type='checkbox'][value='s']").prop("checked");
+  var su=$(".eventMakingPanel input[type='checkbox'][value='su']").prop("checked");
+  var reminder=interpretedData($("#eventPanelReminder #reminder").val(),"none");
+  if(!reminder){
+     alert("please specify a reminder");
+    return;}
+  var repetitionObj=tempObjs.getObjects();
+
+  //............
+  if(!checkInputs($("#time1").val()) || !checkInputs($("#time2").val())){
+
+    return;
+  }
+  if($("#myEventInput").val() ==="Please enter a title" ||$("#myEventInput").val().trim().length<1){
+    displaySucces("no");
+    alert("please enter a title");
+  }else{
+    var value1 =$("#time1").val();
+
+    var value2 =$("#time2").val();
+
+    if(value1==="none"){
+      value1=false;
+    }
+    if(value2==="none"){
+      value2=false;
+    }
+  //  calendar.attachEvent($("#myEventInput").val(),value1,value2);
+    var succes =calendar.attachEvent($("#myEventInput").val(),value1,value2,m,t,w,th,f,s,su,repetitionY,repetitionObj,reminder);
+    if(succes){
+      displaySucces("yes");
+    }else {
+      displaySucces("no");
+    }
+    $(".eventMakingPanel").hide();
+    $("#monthEventsInfoScreen").hide();
+  }
+   initializeEntries("eventMake");
+});
+
+
+$(".aDay .daysTable").click(function(e){
+
+ tempObjs.clear();
+var month = parseInt(calendar.getDayCurrents("month"));
+var year = parseInt(calendar.getDayCurrents("year"));
+initializeEntries("eventMake");
+
+  calendar.updatePanel(e,"daily");
+  littleCalendar(year,month,".littleCalendarTable"); //for the customizes repetition options calendr
+
+});
+$("#allDay").click(function(e){
+
+  calendar.updatePanel(e,"daily");
+
+});
+
+calendar.addListener("monthEventListener",function(location,TheEvent){
+//  alert(calendar.getMonthCurrents("month"));
+  var eY= calendar.getMonthCurrents("year");
+  var eM= calendar.getMonthCurrents("month");
+  var eD= TheEvent.attributes.day;
+  var sEnd =TheEvent.attributes.endTime;
+  var endT=sEnd;
+  var endMin;
+  var endFormat="am";
+  if(sEnd){
+     endT = parseInt(sEnd.slice(0,sEnd.indexOf(":")));
+     endMin=parseInt(sEnd.slice(sEnd.indexOf(":")+1,sEnd.indexOf(":")+3));
+     endFormat=sEnd[sEnd.length-2]+sEnd[sEnd.length-1];
+     if(endFormat==="pm" && endT<12){
+       endT+=12;
+     }else if (endFormat==="pm" && endT===12) {
+       endT=0;
+     }
+  }else {
+    endT=23;
+    endMin=59;
+  }
+  var eH=endT;
+  var eMin=endMin;
+  var bColor="orange";
+  //var eM= TheEvent.attributes.month;
+  var ThisTitle=TheEvent.attributes.title;
+  if(getDifferenceInDate("today",new Date(eY,eM,eD,eH,eMin),"millisecond")<0){
+    bColor="lightgrey";
+  }
+   var es=calendar.getEventsAvailableIn(TheEvent.attributes.year,TheEvent.attributes.month,TheEvent.attributes.day);
+   var numOfChildreenHere=$($(location)[0]).children().length;
+   if(numOfChildreenHere===3){
+     $(location).append("<div class='eventDivsExtra'>"+"+1 more"+" </div>");
+     $($(location)[0].lastChild).click(function(e){
+         $("#monthEventsInfoScreen").empty();
+          for(var i =2; i<es.length; i++){
+             $("#monthEventsInfoScreen").append("<div class='meif' value="+es[i].id+" style='background-color:"+bColor+"' >"+  es[i].attributes.title   +"</div>");
+
+          }
+           initializeMonthOnHoverProperties();
+          $("#monthEventsInfoScreen").show();
+          $("#monthEventsInfoScreen").css("top",e.currentTarget.offsetTop+20);
+          $("#monthEventsInfoScreen").css("left",e.currentTarget.offsetLeft-7);
+
+     });
+   }else if (numOfChildreenHere>3) {
+     $($(location)[0].lastChild).text("+"+(es.length-2)+" more");
+
+   }
+   else {
+
+     //var anIndex=TheEvent.attributes.month+"."+TheEvent.attributes.day+"."+TheEvent.attributes.year;
+     $(location).append("<div class='eventDivs' value="+TheEvent.id+" style='background-color:"+bColor+"'>"+ThisTitle+" </div>");
+
+   }
+
+ });
+
+
+ $("#monthEventsInfoScreen").click(function(e){
+   if(e.target.className==="meif"){
+     calendar.updatePanel(e,"extra");
+   }else {
+     //console.log("error avoided")
+   }
+
+
+
+ });
+calendar.addListener("viewChanger",function(x){
+  $("#smallInfoScreen").hide();
+  $(".eventMakingPanel").hide();
+  $(".aDay").hide();
+  $(".oneMonth").hide();
+  $(".calendar").hide();
+
+  if(x ==="day"){
+    $(".aDay").show();
+    calendar.refreshDay();
+    scrollToCurrentTime();
+
+  }
+  if(x ==="month"){
+      $(".oneMonth").css({"width":"inherit","height":"auto","overflow":"visible"});
+    $(".oneMonth").show();
+    initializeMonthOnHoverProperties();
+  }
+  if(x ==="year"){
+      $(".calendar").show();
+  }
+} );
+
+function displayElegently(e){
+
+  var parentTop= $(".calendarBody")[0].offsetTop;
+  var parentLeft= $(".calendarBody")[0].offsetLeft;
+  $(".oneMonth").css("position","absolute");
+  $(".oneMonth").css("top",(parentTop +e.target.offsetTop)-94);
+  $(".oneMonth").css("left",(parentLeft + e.target.offsetLeft)+41);
+  $(".oneMonth").css("height","0px");
+  $(".oneMonth").css("width","0px");
+  $(".oneMonth").animate({width:1000,height:700,left:0,top:60},400,function(){
+     $(".calendar").hide();
+     $(".eventMakingPanel").hide();
+     $(".oneMonth").css({"position":"","height":"auto","width":"inherit","top":null,"left":null,"overflow":"visible"});
+
+  });
+  $(".oneMonth").show();
+}
+function displayDayElegently(from,e){
+  $(".aDay").css("position","absolute");
+  $(".aDay").css("top",e.currentTarget.offsetTop+e.target.offsetTop+170);
+  $(".aDay").css("left",e.currentTarget.offsetLeft+e.target.offsetLeft);
+  $(".aDay").css("height","20px");
+  $(".aDay").css("width","20px");
+  $(".aDay").animate({width:1000,height:700,left:0,top:60},400,function(){
+     if(from==="month"){
+       $(".oneMonth").hide();
+     }else if (from==="year") {
+       $(".calendar").hide();
+     }
+     $(".eventMakingPanel").hide();
+     $(".aDay").css({"position":"","height":"auto","width":"inherit","top":null,"left":null,"overflow":"visible"});
+
+  });
+  $(".aDay").show();
+  calendar.refreshDay();
+  scrollToCurrentTime();
+}
+
+function scrollToCurrentTime(){
+
+  var times=getTimes();
+  var scrollTo;
+  if(times.minute<30){
+    scrollTo = (($("#"+times.hour+"00"+times.format).offset().top-$(".dayTimes").offset().top)+$(".dayTimes")[0].scrollTop)-30;
+  }else {
+    scrollTo = (($("#"+times.hour+"30"+times.format).offset().top-$(".dayTimes").offset().top)+$(".dayTimes")[0].scrollTop)-30;
+  }
+  var currentDate= new Date();
+  if(calendar.getDayCurrents("day")===currentDate.getDate() && currentDate.getMonth()===calendar.getDayCurrents("month") && currentDate.getFullYear()===calendar.getDayCurrents("year")){ ///  only when it is the current day
+    $("html, .dayTimes").animate({scrollTop:scrollTo}, 600,"swing");
+  }else {
+    //this is for scrolling down and back up
+    // $("html, .dayTimes").animate({scrollTop:1200}, 600,"swing",function(){
+    //    setTimeout(function(){
+    //      $("html, .dayTimes").animate({scrollTop:0}, 600,"swing");
+    //    },1000);
+    //
+    // });
+  }
+
+}
+calendar.addListener("monthViewListeners",function(theYear,theMonth,tableId){
+
+  var monthString= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var dayString =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  calendar.emptyCalendar(".tableMonth");
+  document.getElementById("titleMonth").innerHTML=monthString[theMonth]+"<br>"+theYear;
+   var firstDay = new Date(theYear, theMonth, 1).getDay();
+   var lastDay  = new Date(theYear, theMonth + 1, 0).getDate();
+   var j =1;
+   var start=7;
+   for(var i=firstDay; i<lastDay +firstDay; i++){ //this part add values to the calendar
+     $(tableId+" td")[start +i].innerHTML= "<span class='tdNumbers'>"+j+"</span>";
+     $(tableId+" td")[start +i].attributes.value=j;
+     var elts=calendar.getEventsAvailableIn(theYear,theMonth,j);
+       $($(tableId+" td")[start +i]).addClass("months");
+       for(var k =0; k<elts.length; k++){
+        calendar.addMonthEvent($(tableId+" td")[start +i],elts[k]);
+       }
+     if( new Date().getDate()===j && theMonth===new Date().getMonth() && theYear=== new Date().getFullYear()){
+          //  $($(tableId+" td")[start +i]).css("backgroundColor","darkgrey");
+            $(".tableMonth  span").filter(function(){
+             return (parseInt($(this).text()) === j);
+           }).css({"padding":"3px","border-radius":"30px","background-color":"red","color":"white"});
+     }
+       j++;
+   }
+  initializeMonthOnHoverProperties(); //to initialize on hover events so that they works
+});
+calendar.addListener("yearViewListeners",function(theYear,theMonth,tableId){
+  var monthString= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var dayString =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    calendar.emptyCalendar(tableId);
+    document.getElementById("monthDisplay"+tableId.slice(6,tableId.length)).innerHTML=monthString[i=theMonth];
+   var firstDay = new Date(theYear, theMonth, 1).getDay();
+   var lastDay  = new Date(theYear, theMonth + 1, 0).getDate();
+   var j =1;
+   var start=7;
+   for(var i=firstDay; i<lastDay +firstDay; i++){ //this part add values to the calendar
+     $(tableId+" td")[start +i].innerHTML=j;
+     $(tableId+" td")[start +i].attributes.value=j;
+     var elts=calendar.getEventsAvailableIn(theYear,theMonth,j);
+       $($(tableId+" td")[start +i]).addClass("years");
+       for(var y=0; y<elts.length; y++){
+        var thisInfo=elts[y];
+        $($(tableId+" td")[start +i]).css("font-weight","bold");
+        $($(tableId+" td")[start +i]).css("backgroundColor","lightgrey");
+       }
+     if( new Date().getDate()===j && theMonth===new Date().getMonth() && theYear=== new Date().getFullYear()){
+            $($(tableId+" td")[start +i]).css("border","2px solid red");
+            $($(tableId+" td")[start +i]).css("border-radius","100px");
+     }
+       j++;
+   }
+ });
+// localStorage.removeItem('yearClick');
+ $(".calendar td").click(function(e){
+   //clear the customize repetion  object so that it wont use old values
+   tempObjs.clear();
+   // save the option to local storage so that it can remenber
+   var option = localStorage.getItem("yearClick");
+   if(option===null){
+     option = "day";
+   }
+  if(option==="event"){
+    if(parseInt(e.currentTarget.attributes.value)){
+      var date = new Date();
+      var todayDate = date.getDate();
+      var targetDay =e.currentTarget.attributes.value;
+      var yr= date.getFullYear();
+      var month=e.target.offsetParent.className;
+      month= parseInt(month.slice(5,month.length));
+      var difference = getDifferenceInDate("today",new Date(yr,month,targetDay),"day");
+      if(difference>=-1){
+        addDateToTempObjs(month,targetDay,yr);
+      }
+
+      // var aKey=(month+""+targetDay+""+yr);
+      // console.log(tempObjs.add(aKey,new ADate(month,targetDay,yr)));
+      littleCalendar(yr,month,".littleCalendarTable"); //this is to change liitle calendar , update
+      if(getDifferenceInDate("today",new Date(yr,month,targetDay),"millisecond")<0 && todayDate!==targetDay){
+
+        //alert("this day has passed, are you sure you want to set an event?");
+      }
+       initializeEntries("eventMake");//clear allthe entries
+       calendar.updatePanel(e,"year");
+    }
+  }else if (option==="day") {
+    if(parseInt(e.currentTarget.attributes.value)){
+      var tClassName=e.currentTarget.offsetParent.className;
+       var month = parseInt(tClassName.slice(5,tClassName.length));
+       var year = parseInt(calendar.getYearCurrents("year"));
+       var day = parseInt(e.currentTarget.attributes.value);
+       calendar.changeDayView(year, month, day);
+       $("#smallInfoScreen").hide();
+       $(".eventMakingPanel").hide();
+       displayDayElegently("year",e);
+      //console.log(year,month,day);
+    }
+  }
+
+ });
+
+ $(".calendar center").click(function(e){
+  if(e.currentTarget.className==="monthDisplay"){
+    var mM= e.currentTarget.id;
+    mM= parseInt(mM.slice(12,mM.length));
+    calendar.displayAMonth(new Date().getFullYear(),mM);
+    displayElegently(e);
+  }
+ });
+
+
+ $(".oneMonth td").click(function(e){
+
+  if(e.target.className==="tdNumbers"){
+    var month = parseInt(calendar.getMonthCurrents("month"));
+    var year = parseInt(calendar.getMonthCurrents("year"));
+    var day = parseInt(e.target.innerHTML);
+    calendar.changeDayView(year, month, day);
+    $("#smallInfoScreen").hide();
+    $(".eventMakingPanel").hide();
+    displayDayElegently("month",e);
+    //calendar.changeCurrentViewTo("day");
+    return;
+  }
+   if(parseInt(e.currentTarget.attributes.value)){
+     tempObjs.clear(); //clear the customize repetion  object so that it wont use old values
+     initializeEntries("eventMake");//clear allthe entries
+   calendar.updatePanel(e,"month");
+    var month = parseInt(calendar.getMonthCurrents("month"));
+    var year = parseInt(calendar.getMonthCurrents("year"));
+    littleCalendar(year,month,".littleCalendarTable"); //for the customizes repetition options calendr
+
+   }
+
+ });
+calendar.addListener("emptyCalendar",function(tableId){
+  if(tableId===".littleCalendarTable"){
+
+    for(var i=7; i<49;i++){
+
+      $($(tableId+" td")[i]).empty();
+      $(tableId+" td")[i].attributes.value="";
+      $($(tableId+" td")[i]).css({"color":"black","background-color":"grey","font-weight":"normal","border":"none","border-radius":"30px"});
+
+    }
+    return;
+  }
+  if(tableId===".aDay"){
+    $( ".insideCell").empty();
+    $( "#allDay").empty();
+     return;
+  }
+  for(var i=7; i<49;i++){
+
+    $($(tableId+" td")[i]).empty();
+    $(tableId+" td")[i].attributes.value="";
+    $($(tableId+" td")[i]).css("background-color","white");
+  if(tableId===".tableMonth"){ // if it is the month view only;
+    $($(tableId+" td")[i]).removeClass("months");
+  }else { //else this apply to the year view only;
+    $($(tableId+" td")[i]).css("font-weight","normal");
+    $($(tableId+" td")[i]).css("border","none");
+    $($(tableId+" td")[i]).css("border-radius","30px");
+  }
+
+  }
+
+});
+ calendar.addListener("daychangeCurrentDay", function(currentYearIndex,currentMonthIndex,currentDayIndex){ //update the day view
+   var monthString= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   var dayString =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+   var weekDayInString= dayString[new Date(currentYearIndex, currentMonthIndex,currentDayIndex).getDay()];
+   document.getElementById("theDay").innerHTML=weekDayInString+", "+monthString[currentMonthIndex]+" "+currentDayIndex+" "+currentYearIndex;
+   var events =calendar.getEventsAvailableIn(currentYearIndex,currentMonthIndex,currentDayIndex);
+     calendar.emptyCalendar(".aDay");
+   for(var i=0; i<events.length; i++){
+
+     calendar.addDayEvent(events[i].attributes.startTime,events[i]);
+   }
+
+   scrollToCurrentTime();
+ });
+
+ calendar.addListener("panelListener", function(e,where,year,month,day,sTime,eTime){ //the event making panel listenner
+   var monthString= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   var dayString =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+   $("#buttonCreate").prop('disabled', false);
+   if(where ==="extra"){
+     if(e.target.className ==="meif"){
+       var ev=calendar.getAnEvent(e.target.attributes.value.value);
+       var thisID=e.target.attributes.value.value;
+       calendar.addPanelCurrentTarget("panelCurrentID",thisID);
+       $("#buttonCreate").prop('disabled', true);
+       $("#buttonEdite").prop('disabled', false);
+       $("#buttonDelete").prop('disabled', false);
+       var t1=ev.attributes.startTime;
+       var t2=ev.attributes.endTime;
+       getAndDisplayRepetitions(ev,"setEvent");
+       $("#time1").val(t1?t1:"none");
+       $("#time2").val(t2?t2:"none");
+       $(".eventMakingPanel").show();
+       $(".timeInputs").show();
+       $(".arrow").css("left","-10px");
+       $(".arrow").show();
+       $(".eventMakingPanel").css("top",e.currentTarget.offsetTop+e.target.offsetTop-115);
+       $(".eventMakingPanel").css("left",e.currentTarget.offsetLeft+e.target.offsetLeft+170);
+
+       var thistargetDay=day;
+       var thisyear=year;
+       var thismonth= month;
+       if(parseInt(thistargetDay) && parseInt(thisyear) && parseInt(thismonth)){
+         //console.log(thistargetDay);
+         var td = new Date(thisyear, thismonth, thistargetDay).getDay();
+
+         $("#myEventInput").val(e.target.innerHTML);
+         document.getElementById("eventDate").innerHTML= " <span style='font-size:20px; color:darkgrey;'>when:   </span> "+dayString[td]+", "+ monthString[thismonth]+ " <span style=' '>"+thistargetDay+"</span> "+thisyear;
+       }else {
+         console.log("error");
+         //console.log(parseInt(thistargetDay), parseInt(thisyear), parseInt(thismonth))
+              }
+     }
+
+     return;
+   }
+   else if(where==="year" || where==="month" ){
+
+     if(e.target.localName ==="td"){
+       $("#buttonEdite").prop('disabled', true);
+       $("#buttonDelete").prop('disabled', true);
+       $("#myEventInput").val("Please enter a title").css("color","grey");//new event
+       $("#time1").val("none");
+       $("#time2").val("none");
+
+     }else{
+       $("#myEventInput").val(e.target.innerHTML).css("color","black");
+       $("#buttonEdite").prop('disabled', false);
+       $("#buttonDelete").prop('disabled', false);
+     }
+
+     var targetDay =e.currentTarget.attributes.value;
+     if(targetDay){
+       var td = new Date(year, month, targetDay).getDay();
+       document.getElementById("eventDate").innerHTML= " <span style='font-size:20px; color:darkgrey;'>when:   </span> "+dayString[td]+", "+ monthString[month]+ " <span style=' '>"+targetDay+"</span> "+year;
+       $(".arrow").show();
+
+         if(where==="year" ){
+           $("#time1").val("none");
+           $("#time2").val("none");
+           $(".eventMakingPanel").show();
+           $(".timeInputs").show();
+           var parentTop= $("#"+e.currentTarget.offsetParent.className.slice(5,e.currentTarget.offsetParent.className.length)+".calendarBody")[0].offsetTop;
+           var parentLeft= $("#"+e.currentTarget.offsetParent.className.slice(5,e.currentTarget.offsetParent.className.length)+".calendarBody")[0].offsetLeft;
+           $(".eventMakingPanel").css("top",(parentTop +e.target.offsetTop)-94);
+           $(".eventMakingPanel").css("left",(parentLeft + e.target.offsetLeft)+41);
+         }else if (where ==="month") {
+           $("#buttonCreate").prop('disabled', false);
+
+           if(e.target.className==="eventDivsExtra"){ //do not show eventMakingPanel
+
+             $(".eventMakingPanel").hide();
+           }else {
+
+             $(".eventMakingPanel").show();
+             if(e.target.localName!=="td"){
+
+               $("#buttonCreate").prop('disabled', true);
+               var ev =calendar.getAnEvent(e.target.attributes.value.value);
+               var t1=ev.attributes.startTime;
+               var t2=ev.attributes.endTime;
+               $("#time1").val(t1? t1:"none");
+               $("#time2").val(t2? t2:"none");
+               //add all the repetions
+               getAndDisplayRepetitions(ev,"setEvent");
+               //............
+             }else {
+               $("#time1").val("none");
+               $("#time2").val("none");
+
+               var difference = getDifferenceInDate("today",new Date(year,month,day),"day");
+
+               if(difference>=-1){
+                 addDateToTempObjs(month,day,year);
+               }
+             }
+
+             calendar.addPanelCurrentTarget("panelCurrentID",e.target.attributes.value.value);
+             $(".timeInputs").show();
+             var limitX = $("body")[0].clientWidth;
+             var limitY = $("body")[0].clientHeight;
+             var xp=e.clientX;
+             var yp=e.clientY;
+
+             if(xp+350 > limitX){ //this part adapts the eventMakingPanel to the screen width, so if the window size is small and hide the eventMakingPanel, it adapts its position accordingly
+               if(e.target.className==="eventDivs"){
+                 $(".eventMakingPanel").css("top",e.currentTarget.offsetTop+97);
+                 $(".eventMakingPanel").css("left",e.currentTarget.offsetLeft-300);
+                 $(".arrow").css({"left":"260px"});
+               }else {
+                 $(".eventMakingPanel").css("top",e.currentTarget.offsetTop+70);
+                 $(".eventMakingPanel").css("left",e.currentTarget.offsetLeft-300);
+                 $(".arrow").css({"left":"260px"});
+               }
+
+             }else {
+
+               if(e.target.className==="eventDivs"){
+                 $(".arrow").css("left","-10px");
+                 $(".eventMakingPanel").css("top",e.currentTarget.offsetTop+e.target.offsetTop+70);
+                 $(".eventMakingPanel").css("left",e.currentTarget.offsetLeft+e.target.offsetLeft+157);
+               }else {
+
+                 $(".arrow").css({"left":"-10px"});
+                 $(".eventMakingPanel").css("top",e.currentTarget.offsetTop+70);
+                 $(".eventMakingPanel").css("left",e.currentTarget.offsetLeft+165);
+               }
+
+             }
+           }
+
+         }
+    }
+
+   }
+   else if (where ==='day') {
+     if(e.target.className ==="insideCell" || e.target.className ==="daysEventDivs" || e.target.className==="allDayDivs"){
+       //calendar.addPanelCurrentTarget(e);
+       $("#myEventInput").val("Please enter a title").css("color","grey");//new event
+       $(".eventMakingPanel").show();
+       $(".timeInputs").show();
+       $(".arrow").hide();
+
+       if(e.target.className ==="insideCell"){ //this means that there is not elemnt in this div
+         $("#buttonEdite").prop('disabled', true); //disbale the buttons to prevent the deleting of the table itself
+         $("#buttonDelete").prop('disabled', true);
+         var tId=e.target.id;
+         tId =tId.slice(0,tId.length-4)+":" +tId.slice(tId.length-4, tId.length);
+         $("#time1").val(tId); //iam using hour as an id here
+         $("#time2").val("none");
+         var difference = getDifferenceInDate("today",new Date(year,month,day),"day");
+         if(difference>=-1){
+           addDateToTempObjs(month,day,year);//to add this date
+         }
+
+       }else if(e.target.className ==="daysEventDivs"){
+         var tId=e.target.offsetParent.id;
+         tId =tId.slice(0,tId.length-4)+":" +tId.slice(tId.length-4, tId.length);
+         $("#myEventInput").val(e.target.innerHTML);//the title of the event
+         var ev=calendar.getAnEvent(e.target.attributes.value.value);
+         var t1=ev.attributes.startTime;
+         var t2=ev.attributes.endTime;
+         $("#time1").val(t1?t1:"none");
+         $("#time2").val(t2?t2:"none");
+         calendar.addPanelCurrentTarget("panelCurrentID",e.target.attributes.value.value);
+         $("#buttonEdite").prop('disabled', false);
+         $("#buttonDelete").prop('disabled', false);
+         getAndDisplayRepetitions(ev,"setEvent");
+       }else if (e.target.className==="allDayDivs") {
+         $("#myEventInput").val(e.target.innerHTML);//the title of the event
+         var ev=calendar.getAnEvent(e.target.attributes.value.value);
+         var t1=ev.attributes.startTime;
+         var t2=ev.attributes.endTime;
+         $("#time1").val(t1?t1:"none");
+         $("#time2").val(t2?t2:"none");
+         calendar.addPanelCurrentTarget("panelCurrentID",e.target.attributes.value.value);
+         $("#buttonEdite").prop('disabled', false);
+         $("#buttonDelete").prop('disabled', false);
+         getAndDisplayRepetitions(ev,"setEvent");
+       }
+       var td = new Date(year, month, day).getDay();
+       document.getElementById("eventDate").innerHTML= " <span style='font-size:20px; color:darkgrey;'>when:   </span> "+dayString[td]+", "+monthString[month]+ " <span style=' '>"+day+"</span> "+year;
+       var xp=((e.currentTarget.clientWidth)/2) -($("#panel")[0].clientWidth/2);
+       var yp=e.clientY +document.body.scrollTop;
+       $(".eventMakingPanel").css("top",yp);
+       $(".eventMakingPanel").css("left",xp);
+     }
+     }
+ });
+
+
+
+ function getAndDisplayRepetitions(theEvent,forWhere){
+   var ev=theEvent;
+   var inputDivId="#eventPanelReminder";
+   var name="eventMake";
+   if(forWhere==="setEvent"){
+     inputDivId="#eventPanelReminder";
+      name="eventMake";
+   }
+   else if (forWhere==="editEvent") {
+     inputDivId="#editPanelReminder";
+      name="edit";
+   }
+   console.log(ev.attributes.reminder);
+     $(inputDivId+"  #reminder").val(interpretedData(ev.attributes.reminder,"reverse"));
+     if(ev.attributes.repetitionY===true){
+       $("input[type='checkbox'][name="+name+"][value='yearly']").prop("checked", true);
+     }else {
+       $("input[type='checkbox'][name="+name+"][value='yearly']").prop("checked", false);
+     }
+     if(ev.attributes.repM===true){
+       $("input[type='checkbox'][name="+name+"][value='m']").prop("checked", true);
+     }
+     else{
+       $("input[type='checkbox'][name="+name+"][value='m']").prop("checked", false);
+     }
+     if(ev.attributes.repT===true){
+       $("input[type='checkbox'][name="+name+"][value='t']").prop("checked", true);
+     }else {
+       $("input[type='checkbox'][name="+name+"][value='t']").prop("checked", false);
+     }
+     if(ev.attributes.repW===true){
+       $("input[type='checkbox'][name="+name+"][value='w']").prop("checked", true);
+     }else {
+       $("input[type='checkbox'][name="+name+"][value='w']").prop("checked", false);
+     }
+     if(ev.attributes.repTh===true){
+       $("input[type='checkbox'][name="+name+"][value='th']").prop("checked", true);
+     }else {
+       $("input[type='checkbox'][name="+name+"][value='th']").prop("checked", false);
+     }
+     if(ev.attributes.repF===true){
+       $("input[type='checkbox'][name="+name+"][value='f']").prop("checked", true);
+     }else {
+       $("input[type='checkbox'][name="+name+"][value='f']").prop("checked", false);
+     }
+     if(ev.attributes.repS===true){
+       $("input[type='checkbox'][name="+name+"][value='s']").prop("checked", true);
+     }else {
+       $("input[type='checkbox'][name="+name+"][value='s']").prop("checked", false);
+     }
+     if(ev.attributes.repSu===true){
+       $("input[type='checkbox'][name="+name+"][value='su']").prop("checked", true);
+     }else {
+       $("input[type='checkbox'][name="+name+"][value='su']").prop("checked", false);
+     }
+     var repDayObj=ev.attributes.repetitions;
+     var itsLength=Object.keys(repDayObj).length;
+     if(itsLength>0){
+       tempObjs.updateData(repDayObj);
+     }
+
+
+ }
+ // this part hanle the movement of the panel as you're moving it around...........................
+ function mousePosition(e){
+   if(MouseIsDownOnPanel){ //mouse is down on event handler panel
+     var mousePositionx=e.clientX;
+     var mousePositiony=e.clientY;
+     $("#panel").css("top",mousePositiony-$('.main').offset().top-ymp);//10 ymp
+     $("#panel").css("left",mousePositionx-$('.main').offset().left-xmp);//220 xmp
+     $(".arrow").hide();
+
+   }
+ }
+ var MouseIsDownOnPanel =false;
+ var xmp; //x mouse position
+ var ymp; // y mouse position
+ function mouseDown(e){ //mousedown on event handler panel function
+   if(e.target.localName ==="input"){
+
+   }else {
+     $(".eventMakingPanel").css("transition","none"); //to make the transition go away while we are mouving the panel around
+       MouseIsDownOnPanel=true;
+       xmp=e.clientX - $('#panel').offset().left;
+       ymp=e.clientY - $('#panel').offset().top;
+   }
+
+ }
+ function mouseUp(){
+   MouseIsDownOnPanel=false;
+   //$(".eventMakingPanel").css("transition","1s ease");
+ }
+
+function initializeDropdowns(dropA,dropB,targetA,targetB,classUsedForDropDowns){ // this part initialize the dropdowns values in the event making panel
+  var c=1;
+  var amPm="am";
+  for(var i =1; i<=24; i++){
+
+    $(dropA).append("<div class='"+classUsedForDropDowns+"' >"+c+":00"+amPm+"</div>");
+    $(dropA).append("<div class='"+classUsedForDropDowns+"' >"+c+":30"+amPm+"</div>");
+
+    $(dropB).append("<div class='"+classUsedForDropDowns+"' >"+c+":00"+amPm+"</div>");
+    $(dropB).append("<div class='"+classUsedForDropDowns+"' >"+c+":30"+amPm+"</div>");
+
+    c++;
+    if(c===12){
+      if(amPm ==="am"){
+        amPm="pm";
+      }else {
+        amPm ="am";
+      }
+
+    }
+    if(c===13){
+      c=1;
+    }
+  }
+  $(dropA).click(function(e){
+    $(targetA).val(e.target.innerHTML);
+    $("#time1").css({"animation-name":"inputs","animation-duration":"1s","animation-iteration-count":"3"});
+    $("#time1DropDown").hide();
+    setTimeout(function(){
+      $("#time1DropDown").show();
+      $("#time1").css({"animation-name":"none"});},1000);
+
+  });
+  $(dropB).click(function(e){
+    $(targetB).val(e.target.innerHTML);
+
+    $("#time2").css({"animation-name":"inputs","animation-duration":"1s","animation-iteration-count":"3"});
+    $("#time2DropDown").hide();
+    setTimeout(function(){
+      $("#time2DropDown").show();
+      $("#time2").css({"animation-name":"none"});},1000);
+
+  });
+
+
+
+}
+initializeDropdowns("#time1DropDown","#time2DropDown","#time1","#time2","dropDownsElt");
+initializeDropdowns("#sDropDowns","#eDropDowns","#start","#end","editeDropsDown");
+
+ //.......................................................
+
+ $(".calendar td").hover(function(e){
+   var option = localStorage.getItem("yearHover");
+  //  if(option===null){
+  //    option = "yes";
+  //  }
+ if(option==="yes" || option===null){
+
+      if($(".eventMakingPanel")[0].style.display==="block"){
+        return;
+      }
+      if($(this).css("border-radius")==="100px" && $(this).css("font-weight")==="bold"){
+        var thisExactMonth =parseInt(e.currentTarget.offsetParent.className.slice(5,e.currentTarget.offsetParent.className.length));
+        var thisExactDay=e.currentTarget.attributes.value;
+        var es=calendar.getEventsAvailableIn(calendar.getYearCurrents("year"),thisExactMonth,thisExactDay);
+        $(".calendar td").css("filter","blur(5px)").filter(e.target).css("filter","blur(0px)"); //filter: brightness(1);
+        ///.................................
+        var parentTop= $("#"+thisExactMonth+".calendarBody")[0].offsetTop;
+        var parentLeft= $("#"+thisExactMonth+".calendarBody")[0].offsetLeft;
+        $("#smallInfoScreen").css("top",(parentTop +e.target.offsetTop)-0);
+        $("#smallInfoScreen").css("left",(parentLeft + e.target.offsetLeft)+25);
+        document.getElementById("sContent").innerHTML="Today"+"<br>";
+        for(var z =0; z<es.length; z++){
+          document.getElementById("sContent").innerHTML+=(z+1)+"- "+es[z].attributes.title+"<br>";
+        }
+        $("#smallInfoScreen").show();
+      }
+      else if($(this).css("border-radius")==="100px"){//today
+
+        var thisExactMonth =parseInt(e.currentTarget.offsetParent.className.slice(5,e.currentTarget.offsetParent.className.length));
+        var thisExactDay=e.currentTarget.attributes.value;
+        var es=calendar.getEventsAvailableIn(calendar.getYearCurrents("year"),thisExactMonth,thisExactDay);
+        $(".calendar td").css("filter","blur(5px)").filter(e.target).css("filter","blur(0px)"); //filter: brightness(1);
+        ///.................................
+        var parentTop= $("#"+thisExactMonth+".calendarBody")[0].offsetTop;
+        var parentLeft= $("#"+thisExactMonth+".calendarBody")[0].offsetLeft;
+        $("#smallInfoScreen").css("top",(parentTop +e.target.offsetTop)-0);
+        $("#smallInfoScreen").css("left",(parentLeft + e.target.offsetLeft)+25);
+        document.getElementById("sContent").innerHTML="Today";
+        $("#smallInfoScreen").show();
+      }
+
+      else if($(this).css("font-weight")==="bold"){
+
+        var thisExactMonth =parseInt(e.currentTarget.offsetParent.className.slice(5,e.currentTarget.offsetParent.className.length));
+        var thisExactDay=e.currentTarget.attributes.value;
+        var es=calendar.getEventsAvailableIn(calendar.getYearCurrents("year"),thisExactMonth,thisExactDay);
+        $(".calendar td").css("filter","blur(5px)").filter(e.target).css("filter","blur(0px)"); //filter: brightness(1);
+        ///.................................
+        var parentTop= $("#"+thisExactMonth+".calendarBody")[0].offsetTop;
+        var parentLeft= $("#"+thisExactMonth+".calendarBody")[0].offsetLeft;
+        $("#smallInfoScreen").css("top",(parentTop +e.target.offsetTop)-0);
+        $("#smallInfoScreen").css("left",(parentLeft + e.target.offsetLeft)+25);
+        document.getElementById("sContent").innerHTML="";
+        for(var z =0; z<es.length; z++){
+          document.getElementById("sContent").innerHTML+=(z+1)+"- "+es[z].attributes.title+"<br>";
+        }
+        $("#smallInfoScreen").show();
+      }
+ }
+
+},
+ function (){
+   var option = localStorage.getItem("yearHover");
+  //  if(option===null){
+  //    option = "yes";
+  //  }
+   if(option==="yes" || option===null){
+     $("#smallInfoScreen").hide();
+     if($(".calendar  td").css("filter")!=="none"){
+
+       $(".calendar  td").css("filter","none");//.filter(e.target).css("filter","blur(0px)");
+     }
+
+   }
+
+}
+
+);
+
+
+
+
+//...........
+
+function getTimes() {
+
+        var mynowDate = new Date();
+        var myHour = mynowDate.getHours();
+        var myMin  = mynowDate.getMinutes();
+        var mySec  = mynowDate.getSeconds();
+        var newhour = myHour;
+        var theformat = "am";
+        if(myHour === 12) { newhour = "12"; theformat ="pm";}
+        if(myHour === 13) { newhour = "1"; theformat ="pm";}
+        if(myHour === 14) { newhour = "2"; theformat ="pm";}
+        if(myHour === 15) { newhour = "3"; theformat ="pm";}
+        if(myHour === 16) { newhour = "4"; theformat ="pm";}
+        if(myHour === 17) { newhour = "5"; theformat ="pm";}
+        if(myHour === 18) { newhour = "6"; theformat ="pm";}
+        if(myHour === 19) { newhour = "7"; theformat ="pm";}
+        if(myHour === 20) { newhour = "8"; theformat ="pm";}
+        if(myHour === 21) { newhour = "9"; theformat ="pm";}
+        if(myHour === 22) { newhour = "10"; theformat ="pm";}
+        if(myHour === 23) { newhour = "11"; theformat ="pm";}
+        if(myHour === 0) { newhour = "12"; theformat ="am";}
+         return {hour:newhour, minute:myMin, format:theformat, second:mySec};
+      }
+      function drawLineDayTime(){
+        var currentDate= new Date();
+        if(calendar.getDayCurrents("day")===currentDate.getDate() && currentDate.getMonth()===calendar.getDayCurrents("month") && currentDate.getFullYear()===calendar.getDayCurrents("year")){ /// draw a red line only when it is the current day
+
+          if(  $(".timeLine").length!==0){
+            $(".timeLine").remove();
+          }
+          var times=getTimes();
+          var min = times.minute;
+          var targetedId;
+          var rightNow= times.hour+":"+times.minute+" "+times.second+" "+times.format.toUpperCase();
+          if(min <30){
+            targetedId =$("#"+times.hour+"00"+times.format);
+              $(targetedId).append("<div class='timeLine' style='position:absolute; top:"+min+"px;'><div class='bullet'></div><div class='bulletTimeDisplay'>"+rightNow+"</div></div>");
+          }else {
+              targetedId =$("#"+times.hour+"30"+times.format);
+              var m=min-30;
+                $(targetedId).append("<div class='timeLine' style='position:absolute; top:"+m+"px;'><div class='bullet'></div><div class='bulletTimeDisplay'>"+rightNow+"</div></div>");
+          }
+
+        }
+      }
+  setInterval(function(){
+  drawLineDayTime();
+  },1000);
+calendar.addListener("dayEventListener",function addEventToDaysDiv(id,theEvent){ //id looks like 12:30am ..etc
+  var eventId= theEvent.id;
+  var eventTitle=theEvent.attributes.title;
+  var eventEndTime=theEvent.attributes.endTime;
+  var startingTime=theEvent.attributes.startTime;
+  var endingTime =theEvent.attributes.endTime;
+  if(!endingTime){
+    endingTime="unknow";
+  }
+  var h =25;//height od the day event divs
+  var eventStartTime = id;
+  if(id==="allDay"|| !id){ //this means that no time was specified
+
+    if($("#allDay").children().length>0){ //if the target time have any child or event //.style!==undefined
+
+      var lastchildPositionX=$($("#allDay"))[0].lastChild.style.left; // get its last child position
+      var thisPosition =parseInt(lastchildPositionX)+105;
+      $("#allDay").append("<div class='allDayDivs' style='left:"+thisPosition+"px;' value="+eventId+">"+eventTitle+" </div>");
+    }else {
+        $("#allDay").append("<div class='allDayDivs' style='left:0px;' value="+eventId+">"+eventTitle+" </div>");
+    }
+    return;
+  }
+
+  var index =id.indexOf(":");
+
+  if(index!==-1){
+    var thisHours=id.slice(0,index);
+    var thisMinutes=id.slice(index+1,id.length);
+      //manage every minute >30
+      console.log(parseInt(thisMinutes.slice(0,thisMinutes.length-2)));
+      var minInt=parseInt(thisMinutes.slice(0,thisMinutes.length-2));
+      var minFor=thisMinutes.slice(thisMinutes.length-2,thisMinutes.length);
+      if(minInt >= 30){
+        thisMinutes="30"+minFor;
+      }else if (minInt <30) {
+        thisMinutes="00"+minFor;
+      }
+    id =thisHours+thisMinutes;
+
+
+   console.log(thisMinutes, minFor);
+  }else {
+   //id still the same
+  }
+
+  if($("#"+id).children().length>0){ //if the target time have any child or event
+
+    var lastchildPositionX=$($("#"+id))[0].lastChild.style.left; // get its last child position
+    var thisPosition =parseInt(lastchildPositionX)+105;
+
+    if(eventEndTime){
+      var thisEID=eventEndTime.slice(0,eventEndTime.indexOf(":"))+eventEndTime.slice(eventEndTime.indexOf(":")+1,eventEndTime.length);
+        var dif=$("#"+thisEID).offset().top-$("#"+id).offset().top;
+        if(dif<=0){
+          dif=$("#1130pm").offset().top-$("#"+id).offset().top;
+          h=dif+25;
+        }else {
+          h=dif-5;
+        }
+        //...........................................
+        var eY= calendar.getDayCurrents("year");
+        var eM= calendar.getDayCurrents("month");
+        var eD= calendar.getDayCurrents("day");
+        var sEnd =eventEndTime;
+        var endT=sEnd;
+        var endMin;
+        var endFormat="am";
+        if(sEnd){
+           endT = parseInt(sEnd.slice(0,sEnd.indexOf(":")));
+           endMin=parseInt(sEnd.slice(sEnd.indexOf(":")+1,sEnd.indexOf(":")+3));
+           endFormat=sEnd[sEnd.length-2]+sEnd[sEnd.length-1];
+           if(endFormat==="pm" && endT<12){
+             endT+=12;
+           }else if (endFormat==="pm" && endT===12) {
+             endT=0;
+           }
+        }else {
+          endT=23;
+          endMin=59;
+        }
+        var eH=endT;
+        var eMin=endMin;
+        var bColor="lavender";
+        if(getDifferenceInDate("today",new Date(eY,eM,eD,eH,eMin),"millisecond")<0){
+          bColor="grey";
+        }
+    }else {
+      //alert("no ending time ");
+    }
+    $("#"+id).append("<div class='daysEventDivs' style='background-color:"+bColor+";left:"+thisPosition+"px; height:"+h+"px; ' value="+eventId+">"+eventTitle+", "+startingTime+"-"+endingTime+" </div>");
+  }else {
+      if(eventEndTime){
+        var thisEID=eventEndTime.slice(0,eventEndTime.indexOf(":"))+eventEndTime.slice(eventEndTime.indexOf(":")+1,eventEndTime.length);
+          var dif=$("#"+thisEID).offset().top-$("#"+id).offset().top;
+          if(dif<=0){
+            dif=$("#1130pm").offset().top-$("#"+id).offset().top;
+            h=dif+25;
+          }else {
+            h=dif-5;
+          }
+          //...........................................
+          var eY= calendar.getDayCurrents("year");
+          var eM= calendar.getDayCurrents("month");
+          var eD= calendar.getDayCurrents("day");
+          var sEnd =eventEndTime;
+          var endT=sEnd;
+          var endMin;
+          var endFormat="am";
+          if(sEnd){
+             endT = parseInt(sEnd.slice(0,sEnd.indexOf(":")));
+             endMin=parseInt(sEnd.slice(sEnd.indexOf(":")+1,sEnd.indexOf(":")+3));
+             endFormat=sEnd[sEnd.length-2]+sEnd[sEnd.length-1];
+             if(endFormat==="pm" && endT<12){
+               endT+=12;
+             }else if (endFormat==="pm" && endT===12) {
+               endT=0;
+             }
+          }else {
+            endT=23;
+            endMin=59;
+          }
+          var eH=endT;
+          var eMin=endMin;
+          var bColor="lavender";
+          if(getDifferenceInDate("today",new Date(eY,eM,eD,eH,eMin),"millisecond")<0){
+            bColor="grey";
+          }
+
+      }else {
+        //alert("no ending time ");
+      }
+      $("#"+id).append("<div class='daysEventDivs' style='background-color:"+bColor+";left:0px; height:"+h+"px; ' value="+eventId+">"+eventTitle+", "+startingTime+"-"+endingTime+" </div>");
+  }
+}
+);
+function initializeMonthOnHoverProperties(){
+$(".tableMonth div").hover(function(e){
+  var option = localStorage.getItem("yearHover");
+  if(option==="yes" || option===null){
+    if($(".eventMakingPanel")[0].style.display==="block"){
+      return;
+    }
+    if(e.target.className==="eventDivs"  ){
+
+      var thisId=e.target.attributes.value.value;
+      var thisEvent =calendar.getAnEvent(thisId);
+      $("#smallInfoScreen").css("top",(e.target.offsetParent.offsetTop +e.target.offsetTop)+180);
+      $("#smallInfoScreen").css("left",(e.target.offsetParent.offsetLeft+ e.target.offsetLeft)+150);
+      var time =thisEvent.attributes.startTime ;
+      if(!time){
+        time =" Starting at Midnight"
+      }else {
+        time =" At "+time;
+      }
+      document.getElementById("sContent").innerHTML=thisEvent.attributes.title+time;
+
+      $("#smallInfoScreen").show();
+    }
+    else if (e.target.className==="eventDivsExtra") {
+      if($("#monthEventsInfoScreen")[0].style.display==="block"){
+         return;
+      }
+      $("#smallInfoScreen").css("top",(e.target.offsetTop)-5);
+      $("#smallInfoScreen").css("left",(e.target.offsetLeft)+100);
+      document.getElementById("sContent").innerHTML="click to display more";
+      $("#smallInfoScreen").show();
+    }else {
+      $("#smallInfoScreen").hide();
+    }
+
+   }
+  },function (){
+     $("#smallInfoScreen").hide();
+     //$(".calendar  td").css("filter","blur(0px)");//.filter(e.target).css("filter","blur(0px)");
+  }
+
+  );
+
+  $(".meif ").hover(function(e){
+    var option = localStorage.getItem("yearHover");
+    if(option==="yes" || option===null){
+    if($(".eventMakingPanel")[0].style.display==="block"){
+      return;
+    }
+    //console.log(e.currentTarget.attributes.value.value);
+    if(e.currentTarget.className==="meif"  ){
+
+      var thisId=e.currentTarget.attributes.value.value;
+      var thisEvent =calendar.getAnEvent(thisId);
+      $("#smallInfoScreen").css("top",(e.currentTarget.offsetParent.offsetTop +e.currentTarget.offsetTop));
+      $("#smallInfoScreen").css("left",(e.currentTarget.offsetParent.offsetLeft+ e.currentTarget.offsetLeft)+150);
+      var time =thisEvent.attributes.startTime ;
+      if(!time){
+        time =" Starting at Midnight"
+      }else {
+        time =" At "+time;
+      }
+      document.getElementById("sContent").innerHTML=thisEvent.attributes.title+time;
+
+      $("#smallInfoScreen").show();
+    }
+    else {
+      $("#smallInfoScreen").hide();
+    }
+
+  }
+  },function (){
+     $("#smallInfoScreen").hide();
+     //$(".calendar  td").css("filter","blur(0px)");//.filter(e.target).css("filter","blur(0px)");
+  }
+
+  );
+
+
+}
+
+function getDifferenceInDate(a,b,what){
+  var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+  var oneWeek = 7*oneDay;
+  var oneMonth=oneWeek*4;
+  var oneHour=60*60*1000;
+  var oneMin=60*1000;
+  var oneSecond=1000;
+  var inWhat=oneDay;
+  if(what==="hour"){
+    inWhat=oneHour;
+  }
+  else if(what==="minutes" || what==="minute"){
+    inWhat=oneMin;
+  }
+  else if(what==="second" || what==="seconds"){
+    inWhat=oneSecond;
+  }
+  else if(what==="milliseconds" || what==="millisecond"){
+    inWhat=1;
+  }
+  else if(what==="day" || what==="days"){
+    inWhat=oneDay;
+  }
+  else if(what==="week" || what==="weeks"){
+    inWhat=oneWeek;
+  }
+  else if(what==="month" || what==="months"){
+    inWhat=oneMonth;
+  }
+  if(a==="today" || !a){
+    a = new Date();
+  }
+  if(b==="today" || !b){
+    b = new Date();
+  }
+var firstDate = a;//new Date(2017,2,19,11,30);
+var secondDate = b;//new Date(2017,2,20,10,30);
+
+var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(inWhat)));
+// if(firstDate.getTime()>secondDate.getTime()){
+//   alert("-");
+// }
+var dif=(secondDate.getTime()-firstDate.getTime())/(inWhat);
+// console.log(diffDays);
+// console.log(dif);
+return dif;
+}
+calendar.addListener("alertListener" ,function(theEvent,message,thisKey){
+  var w=$(window).width()/2-($(".alertPanel").width()/2);
+  $(".alertPanel").show();
+  $(".alertPanel").css({"left":w});
+
+  if($("#message").children().length!==0){
+    for(var i=0; i<$("#message").children().length; i++){
+      if(parseInt($("#message").children()[i].attributes.value.value) === parseInt(theEvent.id)){
+        var elt =$($("#message").children()[i]);
+        elt.html(message+"<div class='anAlarmButton' value="+thisKey+">OK</div>");
+        if($(elt).css("animation-name")==="none"){
+          $(elt).css({"animation-name":"alert","animation-duration":"1s","animation-iteration-count":"infinite"});
+        }
+
+        return;
+      }
+    }
+    //........
+    var ms=message;
+    $("#message").append("<div class='anAlert'value="+theEvent.id+">"+ms+"<div class='anAlarmButton' value="+thisKey+">OK</div> </div>");
+  }else {
+    var ms=message;
+    $("#message").append("<div class='anAlert'value="+theEvent.id+">"+ms+"<div class='anAlarmButton' value="+thisKey+">OK</div> </div>");
+
+  }
+   $(".tableMonth").css("filter","blur(10px)");
+   $(".calendar").css("filter","blur(10px)");
+   $(".aDay").css("filter","blur(10px)");
+
+});
+
+$("#message").click(function(e){
+  if(e.target.className==="anAlarmButton"){
+  var thisKey=e.target.attributes.value.value;
+    var id=e.target.offsetParent.attributes.value.value;
+    calendar.addPassedAlert(id,thisKey);
+    calendar.save();
+    $(e.target).parents()[0].remove();
+    if($("#message").children().length<=0){
+      $(".alertPanel").hide();
+      $(".tableMonth").css("filter","none");
+      $(".calendar").css("filter","none");
+      $(".aDay").css("filter","none");
+    }
+    // console.log(e.target.attributes.value.value);
+    // console.log(e.target.offsetParent.attributes.value.value);
+  }
+});
+
+
+
+document.addEventListener('keydown', (event) => {
+  var keyName = event.key;
+  if (keyName === 'Control') {
+    // not alert when only Control key is pressed.
+    return;
+  }
+  if (event.ctrlKey) {
+    // Even though event.key is not 'Control' (i.e. 'a' is pressed),
+    // event.ctrlKey may be true if Ctrl key is pressed at the time.
+    alert("Combination of ctrlKey"+keyName);
+  } else {
+    //  console.log(keyName);
+      if(keyName==="Escape"){
+        if($(".eventMakingPanel")[0].style.display==="block"){
+        $(".eventMakingPanel").hide();
+        }
+        if($(".settings")[0].style.display==="block"){
+          $(".settings").animate({width:0,height:0,left:0,top:0},400,function(){
+            $(".settings").hide();
+          });
+
+        }
+      }
+      if (keyName==="Backspace") {
+        //console.log("ok");
+        if($("#myEventInput").val()==="Please enter a title"){
+          $("#myEventInput").val("");
+        }
+      }
+      if($("#myEventInput").val()==="Please enter a title"){
+        $("#myEventInput").val("");
+      }
+  }
+}, false);
+ //$("title").html("📈 My title");
+  // $("#pageTitle").css({"color":"red"});
+  function checkInputs(x){
+    if(x==="none"){
+      return true;
+    }
+    if(x.indexOf(":")===-1){
+    //  console.log("invalid");
+      return false;;
+    }
+    x= x.trim();
+    if(x.length===7 || x.length===6){//11:23pm
+      var format =x.slice(x.length-2, x.length).toLowerCase();
+      var minute = parseInt(x.slice(x.length-4,x.length-2));
+      var hour = (x.slice(0,x.indexOf(":")));
+      if(!minute && minute!==0){
+        //error
+        return false;
+      }
+      if((format==="am"||format==="pm") &&(minute >=0 && minute<=59) && (hour >=1 && hour<=12)){
+        //console.log(hour,minute,format);
+        return true;
+      }else {
+        //error
+        return false;
+      }
+    }else {
+      //error
+      return false;
+    }
+    }
+  $("#time1").change(function(){
+    console.log(checkInputs($("#time1").val()));
+  });
+
+  $(".eventMakingPanel #customizeRep").click(function(){
+    if($(".eventMakingPanel").has($(".littleCalendar")).length<=0){
+
+        $(".eventMakingPanel").append($(".littleCalendar"));
+      $(".littleCalendar").show();
+    }else {
+
+     if($(".littleCalendar").css("display")==="none"){
+       $(".littleCalendar").show();
+
+     }else {
+       $(".littleCalendar").hide();
+
+     }
+    }
+
+
+  });
+  $(".editePanel #customizeRep").click(function(){
+    var newDate = new Date();
+    littleCalendar(newDate.getFullYear(),newDate.getMonth(),".littleCalendarTable");
+    if($(".editePanel").has($(".littleCalendar")).length<=0){
+      $(".editePanel").append($(".littleCalendar"));
+       $(".littleCalendar").show();
+    }else {
+       if($(".littleCalendar").css("display")==="none"){
+
+         $(".littleCalendar").show();
+       }else {
+         $(".littleCalendar").hide();
+       }
+    }
+
+
+  });
+  function  littleCalendar(theYear,theMonth,tableId){
+     if(theMonth>11){
+       theYear++;
+       theMonth=0;
+     }
+     if(theMonth<0){
+       theYear--;
+       theMonth=11;
+     }
+
+    var monthString= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var dayString =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+      calendar.emptyCalendar(tableId);
+      //document.getElementById("monthDisplay"+tableId.slice(6,tableId.length)).innerHTML=monthString[i=theMonth];
+      $(".littleCalendar #monthDisplay").html(monthString[i=theMonth]);  //yearDisplay
+      $(".littleCalendar #monthDisplay").attr("value",theMonth);
+      $(".littleCalendar #yearDisplay").html(theYear);
+      $(".littleCalendar #yearDisplay").attr("value",theYear);
+     var firstDay = new Date(theYear, theMonth, 1).getDay();
+     var lastDay  = new Date(theYear, theMonth + 1, 0).getDate();
+     var j =1;
+     var start=7;
+     for(var i=firstDay; i<lastDay +firstDay; i++){ //this part add values to the calendar
+       $(tableId+" td")[start +i].innerHTML=j;
+       $(tableId+" td")[start +i].attributes.value=j;
+       var elts=calendar.getEventsAvailableIn(theYear,theMonth,j);
+         $($(tableId+" td")[start +i]).addClass("years");
+         for(var y=0; y<elts.length; y++){
+          var thisInfo=elts[y];
+          $($(tableId+" td")[start +i]).css("font-weight","bold");
+          $($(tableId+" td")[start +i]).css("backgroundColor","lightgrey");
+         }
+       if( new Date().getDate()===j && theMonth===new Date().getMonth() && theYear=== new Date().getFullYear()){
+              $($(tableId+" td")[start +i]).css("border","2px solid red");
+              $($(tableId+" td")[start +i]).css("border-radius","100px");
+       }
+       //create a key using year, month and day to see if the repetion object has them
+         var aKey=(theMonth+""+j+""+theYear);
+
+          if(tempObjs.has(aKey)){
+             $($(tableId+" td")[start +i]).css("color","yellow");
+          }
+
+         j++;
+     }
+  }
+  var tempObjs=new SetRep();
+  function addDateToTempObjs(month,day,year){
+    var aKey=(month+""+day+""+year);
+    return (tempObjs.add(aKey,new ADate(month,day,year,true)));
+  }
+  function ADate(month,day,year,active){
+    this.month=month;
+    this.day=day;
+    this.year=year;
+    this.active=active;
+  }
+  $(".littleCalendar td").click(function(e){
+ if($(".eventMakingPanel").has($(".littleCalendar")).length>0  &&  !$("#buttonEdite").prop('disabled')){
+   console.log("you cannot change the data in this mode. However you can click on edit and edit it");
+   return;
+ }
+    if(parseInt(e.currentTarget.attributes.value)){
+       var d=parseInt(e.currentTarget.attributes.value);
+       var m=parseInt($(".littleCalendar #monthDisplay").attr("value"));
+       var y= parseInt($(".littleCalendar #yearDisplay").attr("value"));
+       //change their color
+       if($(this).css("color")==="rgb(0, 0, 0)"){
+         $(this).css("color","yellow");
+         //add themm to the temporary array
+         var aKey=(m+""+d+""+y);
+         tempObjs.add(aKey,new ADate(m,d,y,true));
+       }else if ($(this).css("color")!=="rgb(0, 0, 0)") {
+           //change it color back to black
+           $(this).css("color","black");
+           //remove it from the temporary array
+           var aKey=(m+""+d+""+y);
+           tempObjs.delete(aKey);
+       }
+    }
+  });
+
+  $(".littleCalendar #n").click(function(e){
+      var m=parseInt($(".littleCalendar #monthDisplay").attr("value"));
+      var y= parseInt($(".littleCalendar #yearDisplay").attr("value"));
+      m++;
+      littleCalendar(y,m,".littleCalendarTable");
+  });
+  $(".littleCalendar #p").click(function(e){
+    var m=parseInt($(".littleCalendar #monthDisplay").attr("value"));
+    var y= parseInt($(".littleCalendar #yearDisplay").attr("value"));
+    m--;
+
+     littleCalendar(y,m,".littleCalendarTable");
+
+  });
+  $(".littleCalendar #tday").click(function(e){
+    var today = new Date();
+    var m=today.getMonth();
+    var y= today.getFullYear();
+
+     littleCalendar(y,m,".littleCalendarTable");
+
+  });
+
+  calendar.initialize();
+  function clearCalendarData(){
+    localStorage.removeItem('CalendarData');
+    localStorage.removeItem('CalendarDataDeleted');
+    localStorage.removeItem('lastId');
+    localStorage.removeItem('expired');
+    console.log(localStorage);
+  }
+
+    </script>
+  </body>
+</html>
